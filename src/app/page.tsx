@@ -354,68 +354,47 @@ function Experience() {
           </h2>
         </div>
 
-        {/* Text cards */}
+        {/* All 6 photo cards */}
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
-          className={`reveal ${visible ? "visible" : ""}`}
+          className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal ${visible ? "visible" : ""}`}
         >
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {cards.map((card) => (
-            <article
-              key={card.title}
-              className="card-hover bg-white rounded-2xl p-8 shadow-sm border border-[#e7e7e7] hover:border-[#5ca8fe]/30"
-            >
-              <div
-                className="w-14 h-14 rounded-xl bg-[#074694]/10 flex items-center justify-center text-2xl mb-6"
-                aria-hidden="true"
+          {cards.map((card, i) => {
+            const photos = [
+              { src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg", alt: "Participants bowling together" },
+              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-14-scaled.jpg", alt: "Social Club activity" },
+              { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg", alt: "Group photo" },
+              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg", alt: "Lax clinic participants" },
+              { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-scaled.jpg", alt: "Group at an event" },
+              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg", alt: "Participants celebrating" },
+            ]
+            const photo = photos[i]
+            return (
+              <article
+                key={card.title}
+                className="card-hover relative rounded-2xl overflow-hidden min-h-[260px] shadow-sm group"
               >
-                {card.emoji}
-              </div>
-              <h3 className="font-heading font-bold text-[#101218] text-xl mb-3">{card.title}</h3>
-              <p className="text-[#4B4F58] leading-relaxed" dangerouslySetInnerHTML={{ __html: card.body }} />
-            </article>
-          ))}
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#074694]/90 via-[#074694]/40 to-transparent" />
+                <div className="absolute top-5 left-5">
+                  <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl" aria-hidden="true">
+                    {card.emoji}
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <h3 className="font-heading font-black text-lg uppercase leading-tight mb-1">{card.title}</h3>
+                  <p className="text-white/80 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: card.body }} />
+                </div>
+              </article>
+            )
+          })}
         </div>
-
-        {/* Photo cards — bottom row */}
-        <div className="grid sm:grid-cols-3 gap-6">
-          {[
-            {
-              src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg",
-              alt: "Participants bowling together",
-              label: "Real Community",
-              sub: "Monthly events, familiar faces, real friendships.",
-            },
-            {
-              src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg",
-              alt: "Group photo from a Social Club event",
-              label: "Come As You Are",
-              sub: "No experience or ability level required.",
-            },
-            {
-              src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg",
-              alt: "Participants cheering together",
-              label: "Built for Everyone",
-              sub: "Every part of the night is designed so everyone can join in.",
-            },
-          ].map(({ src, alt, label, sub }) => (
-            <div key={label} className="relative rounded-2xl overflow-hidden min-h-[240px] shadow-sm">
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#074694]/80 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6 text-white">
-                <p className="font-heading font-black text-xl uppercase leading-tight">{label}</p>
-                <p className="text-white/80 text-sm mt-1">{sub}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        </div>{/* end reveal wrapper */}
       </div>
     </section>
   )
