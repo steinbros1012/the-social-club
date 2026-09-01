@@ -2,9 +2,26 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { EVENT_CONFIG } from "@/config/event"
 import RegistrationForm from "@/components/RegistrationForm"
+
+// ---------- SCROLL REVEAL HOOK ----------
+function useReveal() {
+  const ref = useRef<HTMLElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.12 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return { ref, visible }
+}
 
 // ---------- NAV ----------
 function Nav() {
@@ -18,9 +35,9 @@ function Nav() {
           <Image
             src={EVENT_CONFIG.socialClubLogoUrl}
             alt="The Social Club Logo"
-            width={40}
-            height={40}
-            className="rounded-full object-cover"
+            width={44}
+            height={44}
+            className="object-contain"
           />
           <span className="font-heading font-bold text-white text-sm sm:text-base uppercase tracking-widest">
             The Social Club
@@ -211,10 +228,14 @@ function About() {
     "Watching sports or movies",
     "Listening to music",
   ]
+  const { ref, visible } = useReveal()
 
   return (
     <section id="about" className="py-24 bg-white" aria-labelledby="about-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        className={`max-w-6xl mx-auto px-4 sm:px-6 reveal ${visible ? "visible" : ""}`}
+      >
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
@@ -280,6 +301,7 @@ function About() {
 
 // ---------- EXPERIENCE CARDS ----------
 function Experience() {
+  const { ref, visible } = useReveal()
   const cards = [
     {
       emoji: "🎯",
@@ -306,6 +328,11 @@ function Experience() {
       title: "Snacks & Drinks",
       body: "Light snacks and water are provided. Let us know about dietary needs when you register and we will do our best.",
     },
+    {
+      emoji: "👋",
+      title: "Warm Welcome",
+      body: "Staff greet every family at the door and walk you through the space. Nobody shows up and figures it out alone.",
+    },
   ]
 
   return (
@@ -327,12 +354,16 @@ function Experience() {
           </h2>
         </div>
 
-        {/* Text cards — top row */}
+        {/* Text cards */}
+        <div
+          ref={ref as React.RefObject<HTMLDivElement>}
+          className={`reveal ${visible ? "visible" : ""}`}
+        >
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {cards.map((card) => (
             <article
               key={card.title}
-              className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-[#e7e7e7] hover:border-[#5ca8fe]/30"
+              className="card-hover bg-white rounded-2xl p-8 shadow-sm border border-[#e7e7e7] hover:border-[#5ca8fe]/30"
             >
               <div
                 className="w-14 h-14 rounded-xl bg-[#074694]/10 flex items-center justify-center text-2xl mb-6"
@@ -384,6 +415,7 @@ function Experience() {
             </div>
           ))}
         </div>
+        </div>{/* end reveal wrapper */}
       </div>
     </section>
   )
@@ -391,9 +423,13 @@ function Experience() {
 
 // ---------- WHO IS IT FOR ----------
 function WhoIsItFor() {
+  const { ref, visible } = useReveal()
   return (
     <section className="py-24 bg-[#074694] text-white" aria-labelledby="who-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div
+        ref={ref as React.RefObject<HTMLDivElement>}
+        className={`max-w-6xl mx-auto px-4 sm:px-6 reveal ${visible ? "visible" : ""}`}
+      >
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
             <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
@@ -436,6 +472,7 @@ function WhoIsItFor() {
 
 // ---------- GUIDELINES ----------
 function Guidelines() {
+  const { ref, visible } = useReveal()
   const guidelines = [
     {
       num: "01",
@@ -484,7 +521,10 @@ function Guidelines() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={ref as React.RefObject<HTMLDivElement>}
+          className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal ${visible ? "visible" : ""}`}
+        >
           {guidelines.map(({ num, title, body }) => (
             <div key={num} className="flex gap-5">
               <div
@@ -505,37 +545,40 @@ function Guidelines() {
   )
 }
 
-// ---------- PHOTO STRIP ----------
-function PhotoStrip() {
+// ---------- PHOTO CAROUSEL ----------
+const CAROUSEL_PHOTOS = [
+  { src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg", alt: "Participants bowling together" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-scaled.jpg", alt: "Group at a Social Club event" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg", alt: "Participants celebrating" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg", alt: "Group photo" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg", alt: "Social Club activity" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-1-scaled.jpg", alt: "Participants in a tunnel" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-14-scaled.jpg", alt: "Lax clinic photo" },
+  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-12-scaled.jpg", alt: "Social Club participants" },
+]
+
+function PhotoCarousel() {
+  // Duplicate photos for seamless infinite loop
+  const doubled = [...CAROUSEL_PHOTOS, ...CAROUSEL_PHOTOS]
   return (
-    <section className="py-2 bg-[#f3f5f5] overflow-hidden" aria-label="Photo gallery">
-      <div className="flex gap-2">
-        {[
-          {
-            src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg",
-            alt: "Group photo from a Social Club event",
-          },
-          {
-            src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg",
-            alt: "Participants bowling together",
-          },
-          {
-            src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg",
-            alt: "Participants celebrating",
-          },
-          {
-            src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg",
-            alt: "Social Club activity",
-          },
-          {
-            src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-1-scaled.jpg",
-            alt: "Participants in a tunnel celebration",
-          },
-        ].map(({ src, alt }) => (
-          <div key={src} className="relative flex-1 h-48 sm:h-64 rounded-xl overflow-hidden">
-            <Image src={src} alt={alt} fill className="object-cover" sizes="20vw" />
-          </div>
-        ))}
+    <section className="py-3 bg-[#f3f5f5] overflow-hidden" aria-label="Photo gallery">
+      <div className="marquee-wrapper overflow-hidden">
+        <div className="marquee-track flex gap-3" style={{ width: "max-content" }}>
+          {doubled.map(({ src, alt }, i) => (
+            <div
+              key={`${src}-${i}`}
+              className="relative flex-shrink-0 w-72 sm:w-96 h-52 sm:h-64 rounded-2xl overflow-hidden shadow-sm"
+            >
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="400px"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -723,9 +766,9 @@ function Footer() {
               <Image
                 src={EVENT_CONFIG.socialClubLogoUrl}
                 alt="The Social Club Logo"
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
+                width={44}
+                height={44}
+                className="object-contain"
               />
               <span className="font-heading font-black text-white text-sm uppercase tracking-widest">
                 The Social Club
@@ -815,7 +858,7 @@ export default function Home() {
         <Experience />
         <WhoIsItFor />
         <Guidelines />
-        <PhotoStrip />
+        <PhotoCarousel />
         <Partners />
         <RegistrationSection />
         <FAQ />
