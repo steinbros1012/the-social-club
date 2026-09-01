@@ -123,17 +123,6 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
-        <div className="mb-8 flex justify-center">
-          <Image
-            src={EVENT_CONFIG.socialClubLogoUrl}
-            alt="The Social Club Logo"
-            width={140}
-            height={140}
-            priority
-            className="rounded-2xl shadow-2xl ring-4 ring-white/20"
-          />
-        </div>
-
         <p className="font-heading text-[#5ca8fe] text-sm font-bold uppercase tracking-[4px] mb-4">
           Endless Sports + We Will Walk With You Present
         </p>
@@ -239,13 +228,12 @@ function About() {
               What is The Social Club?
             </h2>
             <p className="text-[#4B4F58] text-lg leading-relaxed mb-6">
-              The Social Club is a monthly social hangout for teens and young adults with
-              disabilities — a space designed with one goal in mind: connection.
+              The Social Club is a monthly hangout for teens and young adults with disabilities. It
+              is built around one thing: real connection.
             </p>
             <p className="text-[#4B4F58] text-lg leading-relaxed mb-8">
-              No pressure, no competition, no judgment. Just a warm, welcoming environment
-              where everyone belongs. Whether participants want to jump into activities or simply
-              sit back and take it all in, the night is theirs.
+              No pressure, no competition, no judgment. Everyone is welcome exactly as they are.
+              Participants can jump into activities or sit back and relax. The night is theirs.
             </p>
 
             <div className="bg-[#f3f5f5] rounded-2xl p-6">
@@ -296,27 +284,27 @@ function Experience() {
     {
       emoji: "🎯",
       title: "Your Night, Your Way",
-      body: "There is no agenda and no schedule to follow. Participants choose how they spend their time — fully supported by staff and volunteers.",
+      body: "No agenda, no schedule. Participants choose how they spend their time, with staff and volunteers there to help.",
     },
     {
       emoji: "🛋️",
       title: "The Sideline",
-      body: "A designated quiet zone for anyone who needs a sensory break or just wants some downtime away from the action. Always available, never a big deal.",
+      body: "A quiet zone for anyone who needs a break from the action. Always available, no questions asked.",
     },
     {
       emoji: "🎲",
       title: "Games & Activities",
-      body: "Lawn games, table games, arts and crafts, and more — rotating each month so there&apos;s always something new to try.",
+      body: "Lawn games, table games, arts and crafts, and more. Activities rotate each month so there is always something new.",
     },
     {
       emoji: "🤝",
       title: "Real Community",
-      body: "The Social Club is built on recurring monthly events so participants can see the same faces, build friendships, and truly feel like they belong.",
+      body: "Monthly events mean familiar faces, real friendships, and a group that keeps showing up for each other.",
     },
     {
       emoji: "🍕",
       title: "Snacks & Drinks",
-      body: "Light snacks and water are provided. Dietary needs? Just let us know when you register and we&apos;ll do our best to accommodate.",
+      body: "Light snacks and water are provided. Let us know about dietary needs when you register and we will do our best.",
     },
   ]
 
@@ -339,7 +327,8 @@ function Experience() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Text cards — top row */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {cards.map((card) => (
             <article
               key={card.title}
@@ -355,26 +344,45 @@ function Experience() {
               <p className="text-[#4B4F58] leading-relaxed" dangerouslySetInnerHTML={{ __html: card.body }} />
             </article>
           ))}
+        </div>
 
-          {/* Wide photo card */}
-          <div className="relative sm:col-span-2 lg:col-span-1 rounded-2xl overflow-hidden min-h-[260px] shadow-sm">
-            <Image
-              src="https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg"
-              alt="Participants cheering together"
-              fill
-              className="object-cover"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#074694]/80 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-8 text-white">
-              <p className="font-heading font-black text-2xl uppercase leading-tight">
-                Built for Everyone
-              </p>
-              <p className="text-white/80 text-sm mt-2">
-                Every detail designed with inclusion in mind.
-              </p>
+        {/* Photo cards — bottom row */}
+        <div className="grid sm:grid-cols-3 gap-6">
+          {[
+            {
+              src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg",
+              alt: "Participants bowling together",
+              label: "Real Community",
+              sub: "Monthly events, familiar faces, real friendships.",
+            },
+            {
+              src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg",
+              alt: "Group photo from a Social Club event",
+              label: "Come As You Are",
+              sub: "No experience or ability level required.",
+            },
+            {
+              src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg",
+              alt: "Participants cheering together",
+              label: "Built for Everyone",
+              sub: "Every part of the night is designed so everyone can join in.",
+            },
+          ].map(({ src, alt, label, sub }) => (
+            <div key={label} className="relative rounded-2xl overflow-hidden min-h-[240px] shadow-sm">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#074694]/80 to-transparent" />
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <p className="font-heading font-black text-xl uppercase leading-tight">{label}</p>
+                <p className="text-white/80 text-sm mt-1">{sub}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -398,13 +406,13 @@ function WhoIsItFor() {
               Who Is It For?
             </h2>
             <p className="text-white/80 text-lg leading-relaxed mb-6">
-              The Social Club is designed for teens and young adults aged{" "}
+              The Social Club is open to teens and young adults aged{" "}
               <strong className="text-white">{EVENT_CONFIG.ageRequirement}+</strong> with any
-              disability — physical, intellectual, developmental, or otherwise.
+              disability: physical, intellectual, developmental, or otherwise.
             </p>
             <p className="text-white/80 text-lg leading-relaxed">
-              Every participant is supported by a caregiver who stays on-site throughout the event.
-              This is not a drop-off program — it&apos;s a community experience for the whole support system.
+              Every participant brings a caregiver who stays on-site the whole time. This is not a
+              drop-off program. It is a night out for the whole support team.
             </p>
           </div>
 
@@ -432,27 +440,32 @@ function Guidelines() {
     {
       num: "01",
       title: "Be Kind",
-      body: "Treat every person — participant, caregiver, volunteer, or staff — with the same respect you&apos;d want for yourself.",
+      body: "Treat everyone here with respect. Participants, caregivers, volunteers, and staff all deserve the same warmth.",
     },
     {
       num: "02",
       title: "Respect Space",
-      body: "Some participants need extra room — physical or sensory. Give space freely and generously.",
+      body: "Some participants need extra room, physically or sensorily. Give it freely.",
     },
     {
       num: "03",
       title: "No Pressure",
-      body: "Participation is always optional. Nobody has to do anything they don&apos;t want to do.",
+      body: "Nobody has to do anything. Everything here is optional.",
     },
     {
       num: "04",
       title: "Caregivers Stay",
-      body: "Parents and caregivers remain on-site for the full duration. This keeps everyone safe and supported.",
+      body: "Parents and caregivers stay on-site the whole night. This is not a drop-off event.",
     },
     {
       num: "05",
       title: "Have Fun",
-      body: "That&apos;s the whole point. If you&apos;re smiling, we&apos;re doing our job.",
+      body: "That is the whole point.",
+    },
+    {
+      num: "06",
+      title: "Leave It Better",
+      body: "Clean up after yourself, cheer people on, and look out for each other.",
     },
   ]
 
@@ -471,7 +484,7 @@ function Guidelines() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {guidelines.map(({ num, title, body }) => (
             <div key={num} className="flex gap-5">
               <div
@@ -510,9 +523,17 @@ function PhotoStrip() {
             src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg",
             alt: "Participants celebrating",
           },
+          {
+            src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg",
+            alt: "Social Club activity",
+          },
+          {
+            src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-1-scaled.jpg",
+            alt: "Participants in a tunnel celebration",
+          },
         ].map(({ src, alt }) => (
           <div key={src} className="relative flex-1 h-48 sm:h-64 rounded-xl overflow-hidden">
-            <Image src={src} alt={alt} fill className="object-cover" sizes="33vw" />
+            <Image src={src} alt={alt} fill className="object-cover" sizes="20vw" />
           </div>
         ))}
       </div>

@@ -618,6 +618,10 @@ export default function RegistrationForm() {
     setData((prev) => ({ ...prev, scholarshipRequested: !prev.scholarshipRequested }))
   }
 
+  function scrollToForm() {
+    document.getElementById("register")?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
   function handleNext() {
     const stepErrors = validateStep(step, data)
     if (Object.keys(stepErrors).length > 0) {
@@ -635,13 +639,13 @@ export default function RegistrationForm() {
     }
     setErrors({})
     setStep((s) => s + 1)
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    scrollToForm()
   }
 
   function handleBack() {
     setErrors({})
     setStep((s) => s - 1)
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    scrollToForm()
   }
 
   async function handleSubmit(e: React.FormEvent) {
