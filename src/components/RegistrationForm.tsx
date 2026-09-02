@@ -289,10 +289,10 @@ function StepCaregiver({
   return (
     <fieldset>
       <legend className="font-heading font-black text-[#101218] text-2xl uppercase mb-1">
-        Caregiver Info
+        Parent / Caregiver Info
       </legend>
       <p className="text-[#4B4F58] text-sm mb-8">
-        The caregiver must remain on-site for the full event. Confirmation emails will be sent here.
+        The parent/caregiver must remain on-site for the full event. Confirmation emails will be sent here.
       </p>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -574,7 +574,7 @@ function StepReview({
         {/* Caregiver summary */}
         <div className="bg-[#f3f5f5] rounded-xl p-5">
           <p className="font-heading font-bold text-[#101218] text-xs uppercase tracking-wide mb-3">
-            Caregiver
+            Parent / Caregiver
           </p>
           <div className="grid grid-cols-2 gap-y-2 text-sm">
             <span className="text-[#4B4F58]">Name</span>

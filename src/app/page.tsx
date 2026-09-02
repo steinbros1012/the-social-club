@@ -216,6 +216,41 @@ function Hero() {
 }
 
 
+// ---------- UPCOMING DATES BANNER ----------
+function UpcomingDatesBanner() {
+  const dates = [
+    { label: "Saturday, September 26", time: "12:00–1:30pm" },
+    { label: "Thursday, October 23", time: "6:30–8:00pm" },
+    { label: "Thursday, November 20", time: "6:30–8:00pm" },
+  ]
+  return (
+    <section className="bg-[#074694] text-white py-4 px-4" aria-label="Upcoming event dates">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center sm:text-left">
+        <span className="font-heading font-black text-xs uppercase tracking-[2px] text-[#5ca8fe] flex-shrink-0">
+          Next Social Club:
+        </span>
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+          {dates.map((d, i) => (
+            <div key={d.label} className="flex items-center gap-3">
+              {i > 0 && <span className="hidden sm:block text-white/30 text-lg">|</span>}
+              <span className="text-sm font-medium text-white/90">
+                <span className="font-bold text-white">{d.label}</span>
+                <span className="text-white/60 ml-1">· {d.time}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+        <a
+          href="#register"
+          className="flex-shrink-0 bg-[#5ca8fe] hover:bg-[#4a96ec] text-white text-xs font-bold px-4 py-1.5 rounded-full transition-colors focus-ring"
+        >
+          Register
+        </a>
+      </div>
+    </section>
+  )
+}
+
 // ---------- ABOUT ----------
 function About() {
   const { ref, visible } = useReveal()
@@ -231,7 +266,7 @@ function About() {
         </p>
         <h2
           id="about-heading"
-          className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-none mb-6 whitespace-nowrap"
+          className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-none mb-6 whitespace-nowrap"
         >
           What is The Social Club?
         </h2>
@@ -246,7 +281,7 @@ function About() {
         <ul className="inline-flex flex-col gap-3 text-left">
           {[
             "Open to everyone aged 13+",
-            "Not a drop-off event — parents and caregivers must remain on-site",
+            "Not a drop-off event — parents/caregivers must remain on-site",
             "No experience or ability level required",
             "Scholarships available, no one turned away",
           ].map((item) => (
@@ -312,7 +347,7 @@ function Experience() {
           </p>
           <h2
             id="experience-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight"
           >
             The Experience
           </h2>
@@ -416,7 +451,7 @@ function RegistrationSection() {
           </p>
           <h2
             id="register-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight mb-4"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight mb-4"
           >
             Register Now
           </h2>
@@ -445,8 +480,8 @@ function FAQ() {
       a: `The Social Club has a suggested $${EVENT_CONFIG.donationAmount} donation per participant. If that's a barrier, scholarships are available — just check the box on the registration form and you won't be charged.`,
     },
     {
-      q: "Do caregivers need to register separately?",
-      a: "No. Caregiver information is collected as part of the participant registration. One form covers the whole family unit.",
+      q: "Do parents/caregivers need to register separately?",
+      a: "No. Parent/caregiver information is collected as part of the participant registration. One form covers the whole family unit.",
     },
     {
       q: "Is there a capacity limit?",
@@ -475,7 +510,7 @@ function FAQ() {
           </p>
           <h2
             id="faq-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight"
           >
             FAQ
           </h2>
@@ -610,6 +645,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <UpcomingDatesBanner />
         <About />
         <Experience />
         <PhotoCarousel />
