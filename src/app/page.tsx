@@ -123,22 +123,25 @@ function Hero() {
       className="relative min-h-screen flex items-center justify-center text-white overflow-hidden"
       aria-label="Hero section"
     >
-      {/* Background image */}
-      <Image
-        src="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
-        alt="Social Club participants bowling together"
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/hero.mov" type="video/quicktime" />
+      </video>
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
         {/* Presenter line */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <div className="relative w-32 h-10">
             <Image
               src={EVENT_CONFIG.endlessSportsLogoUrl}
@@ -148,9 +151,17 @@ function Hero() {
               sizes="128px"
             />
           </div>
-          <span className="text-white/50 font-bold text-lg">&amp;</span>
-          <span className="font-heading font-bold text-white text-sm uppercase tracking-wider">We Will Walk With You</span>
-          <span className="text-white/50 font-bold text-lg">present</span>
+          <span className="text-white/40 font-bold text-xl">&amp;</span>
+          <div className="relative w-36 h-10">
+            <Image
+              src="/wwwwy-logo.png"
+              alt="We Will Walk With You"
+              fill
+              className="object-contain brightness-0 invert"
+              sizes="144px"
+            />
+          </div>
+          <span className="text-white/60 font-medium text-sm uppercase tracking-widest">present</span>
         </div>
 
         {/* Social Club logo */}
@@ -221,7 +232,7 @@ function About() {
         </p>
         <h2
           id="about-heading"
-          className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight mb-6"
+          className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-none mb-6 whitespace-nowrap"
         >
           What is The Social Club?
         </h2>
@@ -233,16 +244,21 @@ function About() {
           No pressure, no competition, no judgment. Everyone is welcome exactly as they are.
           Participants can jump into activities or sit back and relax. The night is theirs.
         </p>
-        <div className="inline-flex flex-col sm:flex-row gap-6 bg-[#f3f5f5] rounded-2xl px-8 py-5 text-left">
-          <div className="flex items-start gap-3">
-            <span className="text-[#5ca8fe] text-xl mt-0.5">✓</span>
-            <p className="text-[#4B4F58]">Open to everyone aged <strong className="text-[#101218]">13+</strong></p>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="text-[#5ca8fe] text-xl mt-0.5">✓</span>
-            <p className="text-[#4B4F58]">This is <strong className="text-[#101218]">not a drop-off event</strong>. Parents and caregivers are required to remain on-site.</p>
-          </div>
-        </div>
+        <ul className="inline-flex flex-col gap-3 text-left">
+          {[
+            "Open to everyone aged 13+",
+            "Not a drop-off event — parents and caregivers must remain on-site",
+            "No experience or ability level required",
+            "Scholarships available, no one turned away",
+          ].map((item) => (
+            <li key={item} className="flex items-start gap-3">
+              <svg className="w-5 h-5 text-[#5ca8fe] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="text-[#4B4F58] text-base">{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
