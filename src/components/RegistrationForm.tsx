@@ -23,6 +23,9 @@ const EMPTY_FORM: RegistrationFormData = {
   accommodationNotes: "",
   dietaryNotes: "",
   scholarshipRequested: false,
+  waiverAgreed: false,
+  waiverPrintedName: "",
+  waiverDate: "",
 }
 
 // ---------- VALIDATION ----------
@@ -45,6 +48,12 @@ function validateStep(step: number, data: RegistrationFormData): FormErrors {
     } else if (!PHONE_RE.test(data.participantPhone)) {
       errors.participantPhone = "Enter a valid phone number."
     }
+  }
+
+  if (step === 3) {
+    if (!data.waiverAgreed) errors.waiverAgreed = "You must agree to the waiver to continue."
+    if (!data.waiverPrintedName.trim()) errors.waiverPrintedName = "Please print your name to sign the waiver."
+    if (!data.waiverDate.trim()) errors.waiverDate = "Please enter today's date."
   }
 
   if (step === 2) {
@@ -380,12 +389,16 @@ function StepCaregiver({
 
 function StepPreferences({
   data,
+  errors,
   onChange,
   onToggleScholarship,
+  onToggleWaiver,
 }: {
   data: RegistrationFormData
+  errors: FormErrors
   onChange: (field: keyof RegistrationFormData, value: string) => void
   onToggleScholarship: () => void
+  onToggleWaiver: () => void
 }) {
   return (
     <fieldset>
@@ -415,8 +428,8 @@ function StepPreferences({
         />
 
         {/* Scholarship toggle */}
-        <div className="mt-6">
-          <div className="h-px bg-[#e7e7e7] mb-6" />
+        <div>
+          <div className="h-px bg-[#e7e7e7] mb-5" />
           <label
             htmlFor="scholarship-requested"
             className={`flex items-start gap-4 p-5 rounded-2xl border-2 cursor-pointer transition-all ${
@@ -445,6 +458,68 @@ function StepPreferences({
               </p>
             </div>
           </label>
+        </div>
+
+        {/* Waiver */}
+        <div>
+          <div className="h-px bg-[#e7e7e7] mb-5" />
+          <p className="font-heading font-bold text-[#101218] text-sm uppercase tracking-wide mb-3">
+            Waiver & Release
+          </p>
+          <div className="bg-[#f3f5f5] rounded-xl p-4 text-xs text-[#4B4F58] leading-relaxed mb-4 max-h-40 overflow-y-auto">
+            <p className="font-bold mb-2">Participant Waiver and Release of Liability</p>
+            <p>By registering for The Social Club, I acknowledge that participation in activities involves inherent risks. I, on behalf of myself and/or the participant, agree to release, indemnify, and hold harmless Endless Sports, We Will Walk With You, their staff, volunteers, and partners from any and all claims, damages, or losses arising from participation in The Social Club events.</p>
+            <p className="mt-2">I confirm that I have read and understand the event guidelines and agree to comply with all rules and policies. I grant permission for photos and video taken at the event to be used for nonprofit promotional purposes.</p>
+            <p className="mt-2">Caregivers agree to remain on-site for the full duration of the event.</p>
+          </div>
+
+          <label
+            htmlFor="waiver-agreed"
+            className={`flex items-start gap-4 p-5 rounded-2xl border-2 cursor-pointer transition-all mb-4 ${
+              data.waiverAgreed
+                ? "border-[#5ca8fe] bg-[#5ca8fe]/5"
+                : errors.waiverAgreed
+                ? "border-red-400 bg-red-50"
+                : "border-[#e7e7e7] hover:border-[#5ca8fe]/40"
+            }`}
+          >
+            <div className="flex-shrink-0 mt-0.5">
+              <input
+                id="waiver-agreed"
+                type="checkbox"
+                checked={data.waiverAgreed}
+                onChange={onToggleWaiver}
+                className="w-5 h-5 rounded border-[#e7e7e7] accent-[#5ca8fe] cursor-pointer focus:ring-2 focus:ring-[#5ca8fe] focus:ring-offset-1"
+              />
+            </div>
+            <div>
+              <p className="font-heading font-bold text-[#101218] text-sm">
+                I have read and agree to the waiver and release of liability
+              </p>
+            </div>
+          </label>
+          {errors.waiverAgreed && <FieldError message={errors.waiverAgreed} />}
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Field
+              label="Print Your Name (Signature)"
+              id="waiver-printed-name"
+              required
+              value={data.waiverPrintedName}
+              onChange={(e) => onChange("waiverPrintedName", e.target.value)}
+              error={errors.waiverPrintedName}
+              placeholder="Print full name"
+            />
+            <Field
+              label="Today's Date"
+              id="waiver-date"
+              required
+              type="date"
+              value={data.waiverDate}
+              onChange={(e) => onChange("waiverDate", e.target.value)}
+              error={errors.waiverDate}
+            />
+          </div>
         </div>
       </div>
     </fieldset>
@@ -618,6 +693,11 @@ export default function RegistrationForm() {
     setData((prev) => ({ ...prev, scholarshipRequested: !prev.scholarshipRequested }))
   }
 
+  function handleToggleWaiver() {
+    setData((prev) => ({ ...prev, waiverAgreed: !prev.waiverAgreed }))
+    if (errors.waiverAgreed) setErrors((prev) => { const next = { ...prev }; delete next.waiverAgreed; return next })
+  }
+
   function scrollToForm() {
     document.getElementById("register")?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
@@ -698,8 +778,10 @@ export default function RegistrationForm() {
         {step === 3 && (
           <StepPreferences
             data={data}
+            errors={errors}
             onChange={handleChange}
             onToggleScholarship={handleToggleScholarship}
+            onToggleWaiver={handleToggleWaiver}
           />
         )}
         {step === 4 && (

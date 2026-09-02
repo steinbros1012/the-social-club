@@ -22,4 +22,8 @@ export interface RegistrationFormData {
   dietaryNotes: string
   // Scholarship
   scholarshipRequested: boolean
+  // Waiver
+  waiverAgreed: boolean
+  waiverPrintedName: string
+  waiverDate: string
 }

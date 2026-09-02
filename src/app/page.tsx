@@ -39,9 +39,6 @@ function Nav() {
             height={44}
             className="object-contain"
           />
-          <span className="font-heading font-bold text-white text-sm sm:text-base uppercase tracking-widest">
-            The Social Club
-          </span>
         </a>
 
         {/* Desktop nav */}
@@ -140,13 +137,32 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
-        <p className="font-heading text-[#5ca8fe] text-sm font-bold uppercase tracking-[4px] mb-4">
-          Endless Sports + We Will Walk With You Present
-        </p>
+        {/* Logo instead of spelled-out text */}
+        <div className="mb-6 flex justify-center">
+          <Image
+            src={EVENT_CONFIG.socialClubLogoUrl}
+            alt="The Social Club"
+            width={180}
+            height={180}
+            priority
+            className="object-contain drop-shadow-2xl"
+          />
+        </div>
 
-        <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight mb-6 leading-none">
-          The Social Club
-        </h1>
+        {/* Presenter logos */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="relative w-36 h-10">
+            <Image
+              src={EVENT_CONFIG.endlessSportsLogoUrl}
+              alt="Endless Sports"
+              fill
+              className="object-contain object-right brightness-0 invert"
+              sizes="144px"
+            />
+          </div>
+          <span className="text-white/40 font-bold">×</span>
+          <span className="font-heading font-bold text-white/90 text-sm uppercase tracking-wide">We Will Walk With You</span>
+        </div>
 
         <p className="text-xl sm:text-2xl text-white/90 font-light max-w-xl mx-auto mb-4 leading-relaxed">
           {EVENT_CONFIG.tagline}
@@ -167,7 +183,7 @@ function Hero() {
             href="#register"
             className="bg-[#5ca8fe] hover:bg-[#4a96ec] text-white font-bold text-lg px-10 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-[#5ca8fe]/30 hover:-translate-y-0.5 focus-ring"
           >
-            Register Now — ${EVENT_CONFIG.donationAmount}
+            Register Here
           </a>
           <a
             href="#about"
@@ -188,110 +204,42 @@ function Hero() {
   )
 }
 
-// ---------- QUICK INFO BAR ----------
-function QuickInfoBar() {
-  const items = [
-    { icon: "🧒", label: "Ages 13+" },
-    { icon: "📅", label: "Monthly Hangout" },
-    { icon: "😌", label: "Low-Pressure" },
-    { icon: "👨‍👩‍👧", label: "Parents Stay On-Site" },
-    { icon: "💙", label: `$${EVENT_CONFIG.donationAmount} Suggested` },
-    { icon: "🤝", label: "Scholarships Available" },
-  ]
-
-  return (
-    <section className="bg-[#074694] py-5" aria-label="Event highlights">
-      <div className="max-w-6xl mx-auto px-4">
-        <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-          {items.map(({ icon, label }) => (
-            <li
-              key={label}
-              className="flex items-center gap-2 text-white/90 text-sm font-medium"
-            >
-              <span aria-hidden="true">{icon}</span>
-              <span>{label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
 
 // ---------- ABOUT ----------
 function About() {
-  const activities = [
-    "Board games & card games",
-    "Arts & crafts",
-    "Casual sports & activities",
-    "Just hanging out and socializing",
-    "Watching sports or movies",
-    "Listening to music",
-  ]
   const { ref, visible } = useReveal()
 
   return (
     <section id="about" className="py-24 bg-white" aria-labelledby="about-heading">
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
-        className={`max-w-6xl mx-auto px-4 sm:px-6 reveal ${visible ? "visible" : ""}`}
+        className={`max-w-3xl mx-auto px-4 sm:px-6 text-center reveal ${visible ? "visible" : ""}`}
       >
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div>
-            <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
-              What We&apos;re About
-            </p>
-            <h2
-              id="about-heading"
-              className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight mb-6"
-            >
-              What is The Social Club?
-            </h2>
-            <p className="text-[#4B4F58] text-lg leading-relaxed mb-6">
-              The Social Club is a monthly hangout for teens and young adults with disabilities. It
-              is built around one thing: real connection.
-            </p>
-            <p className="text-[#4B4F58] text-lg leading-relaxed mb-8">
-              No pressure, no competition, no judgment. Everyone is welcome exactly as they are.
-              Participants can jump into activities or sit back and relax. The night is theirs.
-            </p>
-
-            <div className="bg-[#f3f5f5] rounded-2xl p-6">
-              <p className="font-heading font-bold text-[#101218] text-sm uppercase tracking-wide mb-4">
-                On any given night, you might find:
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {activities.map((activity) => (
-                  <li key={activity} className="flex items-center gap-3 text-[#4B4F58]">
-                    <span className="w-2 h-2 rounded-full bg-[#5ca8fe] flex-shrink-0" aria-hidden="true" />
-                    {activity}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
+          What We&apos;re About
+        </p>
+        <h2
+          id="about-heading"
+          className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight mb-6"
+        >
+          What is The Social Club?
+        </h2>
+        <p className="text-[#4B4F58] text-lg leading-relaxed mb-6">
+          The Social Club is a monthly hangout for teens and young adults with disabilities. It
+          is built around one thing: real connection.
+        </p>
+        <p className="text-[#4B4F58] text-lg leading-relaxed mb-8">
+          No pressure, no competition, no judgment. Everyone is welcome exactly as they are.
+          Participants can jump into activities or sit back and relax. The night is theirs.
+        </p>
+        <div className="inline-flex flex-col sm:flex-row gap-6 bg-[#f3f5f5] rounded-2xl px-8 py-5 text-left">
+          <div className="flex items-start gap-3">
+            <span className="text-[#5ca8fe] text-xl mt-0.5">✓</span>
+            <p className="text-[#4B4F58]">Open to everyone aged <strong className="text-[#101218]">13+</strong></p>
           </div>
-
-          {/* Photos */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src="https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-scaled.jpg"
-                alt="Group activity at the Social Club"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg mt-8">
-              <Image
-                src="https://endlesssports.org/wp-content/uploads/2026/03/sitting-clinic-2.webp"
-                alt="Participants relaxing together"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </div>
+          <div className="flex items-start gap-3">
+            <span className="text-[#5ca8fe] text-xl mt-0.5">✓</span>
+            <p className="text-[#4B4F58]">This is <strong className="text-[#101218]">not a drop-off event</strong>. Parents and caregivers are required to remain on-site.</p>
           </div>
         </div>
       </div>
@@ -400,129 +348,6 @@ function Experience() {
   )
 }
 
-// ---------- WHO IS IT FOR ----------
-function WhoIsItFor() {
-  const { ref, visible } = useReveal()
-  return (
-    <section className="py-24 bg-[#074694] text-white" aria-labelledby="who-heading">
-      <div
-        ref={ref as React.RefObject<HTMLDivElement>}
-        className={`max-w-6xl mx-auto px-4 sm:px-6 reveal ${visible ? "visible" : ""}`}
-      >
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
-              Is This Right For Us?
-            </p>
-            <h2
-              id="who-heading"
-              className="font-heading text-4xl sm:text-5xl font-black uppercase leading-tight mb-6"
-            >
-              Who Is It For?
-            </h2>
-            <p className="text-white/80 text-lg leading-relaxed mb-6">
-              The Social Club is open to teens and young adults aged{" "}
-              <strong className="text-white">{EVENT_CONFIG.ageRequirement}+</strong> with any
-              disability: physical, intellectual, developmental, or otherwise.
-            </p>
-            <p className="text-white/80 text-lg leading-relaxed">
-              Every participant brings a caregiver who stays on-site the whole time. This is not a
-              drop-off program. It is a night out for the whole support team.
-            </p>
-          </div>
-
-          <div className="grid gap-4">
-            {[
-              { q: "Do participants need to be verbal?", a: "No. The Social Club is designed to welcome participants at all communication levels." },
-              { q: "What if my child gets overwhelmed?", a: "The Sideline quiet space is always available. Our staff and volunteers are trained to support any situation with patience and care." },
-              { q: "What if we've never done something like this?", a: "Perfect — that's exactly who this is for. First-timers are always welcome, and our team will be there to help everyone feel comfortable." },
-            ].map(({ q, a }) => (
-              <div key={q} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <p className="font-heading font-bold text-white mb-2">{q}</p>
-                <p className="text-white/75 text-sm leading-relaxed">{a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ---------- GUIDELINES ----------
-function Guidelines() {
-  const { ref, visible } = useReveal()
-  const guidelines = [
-    {
-      num: "01",
-      title: "Be Kind",
-      body: "Treat everyone here with respect. Participants, caregivers, volunteers, and staff all deserve the same warmth.",
-    },
-    {
-      num: "02",
-      title: "Respect Space",
-      body: "Some participants need extra room, physically or sensorily. Give it freely.",
-    },
-    {
-      num: "03",
-      title: "No Pressure",
-      body: "Nobody has to do anything. Everything here is optional.",
-    },
-    {
-      num: "04",
-      title: "Caregivers Stay",
-      body: "Parents and caregivers stay on-site the whole night. This is not a drop-off event.",
-    },
-    {
-      num: "05",
-      title: "Have Fun",
-      body: "That is the whole point.",
-    },
-    {
-      num: "06",
-      title: "Leave It Better",
-      body: "Clean up after yourself, cheer people on, and look out for each other.",
-    },
-  ]
-
-  return (
-    <section className="py-24 bg-white" aria-labelledby="guidelines-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
-          <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
-            Community Standards
-          </p>
-          <h2
-            id="guidelines-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#101218] uppercase leading-tight"
-          >
-            Member Guidelines
-          </h2>
-        </div>
-
-        <div
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal ${visible ? "visible" : ""}`}
-        >
-          {guidelines.map(({ num, title, body }) => (
-            <div key={num} className="flex gap-5">
-              <div
-                className="font-heading font-black text-4xl text-[#5ca8fe]/25 leading-none select-none flex-shrink-0 w-12"
-                aria-hidden="true"
-              >
-                {num}
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-[#101218] text-lg mb-2">{title}</h3>
-                <p className="text-[#4B4F58] leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: body }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ---------- PHOTO CAROUSEL ----------
 const CAROUSEL_PHOTOS = [
@@ -563,54 +388,6 @@ function PhotoCarousel() {
   )
 }
 
-// ---------- PARTNERS ----------
-function Partners() {
-  return (
-    <section className="py-20 bg-white" aria-labelledby="partners-heading">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
-          Collaboration
-        </p>
-        <h2
-          id="partners-heading"
-          className="font-heading text-3xl sm:text-4xl font-black text-[#101218] uppercase mb-12"
-        >
-          Built Together
-        </h2>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-20">
-          {/* Endless Sports */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative w-52 h-16">
-              <Image
-                src={EVENT_CONFIG.endlessSportsLogoUrl}
-                alt="Endless Sports logo"
-                fill
-                className="object-contain"
-                sizes="208px"
-              />
-            </div>
-            <p className="text-[#4B4F58] text-sm">endlesssports.org</p>
-          </div>
-
-          <div className="font-heading font-black text-[#e7e7e7] text-4xl select-none" aria-hidden="true">
-            ×
-          </div>
-
-          {/* We Will Walk With You — text placeholder until client provides logo */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-52 h-16 rounded-xl bg-[#f3f5f5] border-2 border-dashed border-[#e7e7e7] flex items-center justify-center px-4">
-              <p className="font-heading font-bold text-[#4B4F58] text-sm text-center uppercase tracking-wide">
-                We Will Walk With You
-              </p>
-            </div>
-            <p className="text-[#4B4F58] text-xs italic">Logo coming soon</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ---------- REGISTRATION SECTION ----------
 function RegistrationSection() {
@@ -658,10 +435,6 @@ function FAQ() {
     {
       q: "Is there a capacity limit?",
       a: `Yes — to keep the environment comfortable for everyone, we limit attendance to ${EVENT_CONFIG.capacity > 0 ? EVENT_CONFIG.capacity + " participants" : "a set number of participants"} per event. Register early to guarantee your spot.`,
-    },
-    {
-      q: "What if my child needs 1:1 support?",
-      a: "Caregivers are encouraged to stay with their participant as much as needed. Our volunteer staff can also provide additional support — just note any needs in the accommodation field when registering.",
     },
     {
       q: "Is the event accessible?",
@@ -745,13 +518,10 @@ function Footer() {
               <Image
                 src={EVENT_CONFIG.socialClubLogoUrl}
                 alt="The Social Club Logo"
-                width={44}
-                height={44}
+                width={50}
+                height={50}
                 className="object-contain"
               />
-              <span className="font-heading font-black text-white text-sm uppercase tracking-widest">
-                The Social Club
-              </span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed">{EVENT_CONFIG.tagline}</p>
           </div>
@@ -783,28 +553,20 @@ function Footer() {
           {/* Contact */}
           <div>
             <p className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
-              Contact
+              Questions?
             </p>
             <a
               href={`mailto:${EVENT_CONFIG.contactEmail}`}
-              className="text-[#5ca8fe] hover:text-white text-sm transition-colors focus-ring rounded"
+              className="text-[#5ca8fe] hover:text-white text-sm transition-colors focus-ring rounded block mb-2"
             >
               {EVENT_CONFIG.contactEmail}
             </a>
-            <div className="mt-6">
-              <p className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-3">
-                Presented By
-              </p>
-              <div className="relative w-36 h-10">
-                <Image
-                  src={EVENT_CONFIG.endlessSportsLogoUrl}
-                  alt="Endless Sports"
-                  fill
-                  className="object-contain object-left brightness-0 invert"
-                  sizes="144px"
-                />
-              </div>
-            </div>
+            <a
+              href="mailto:amanda.wujcik@gmail.com"
+              className="text-[#5ca8fe] hover:text-white text-sm transition-colors focus-ring rounded block"
+            >
+              amanda.wujcik@gmail.com
+            </a>
           </div>
         </div>
 
@@ -832,13 +594,9 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <QuickInfoBar />
         <About />
         <Experience />
-        <WhoIsItFor />
-        <Guidelines />
         <PhotoCarousel />
-        <Partners />
         <RegistrationSection />
         <FAQ />
       </main>

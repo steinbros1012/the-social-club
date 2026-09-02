@@ -11,6 +11,7 @@ export const EVENT_CONFIG = {
   registrationOpen: true,
   capacity: 50, // set to 0 for unlimited
   contactEmail: "info@endlesssports.org",
-  socialClubLogoUrl: "https://endlesssports.org/wp-content/uploads/2026/03/Social-Club-Logo.jpg",
+  infoEmail: "amanda.wujcik@gmail.com",
+  socialClubLogoUrl: "/logo.png",
   endlessSportsLogoUrl: "https://endlesssports.org/wp-content/uploads/2026/04/Full-Logo-Color.png",
 } as const
