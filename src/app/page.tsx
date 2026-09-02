@@ -141,13 +141,13 @@ function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
         {/* Presenter line */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-          <div className="relative w-32 h-10">
+          <div className="relative w-12 h-14">
             <Image
               src={EVENT_CONFIG.endlessSportsLogoUrl}
               alt="Endless Sports"
               fill
               className="object-contain brightness-0 invert"
-              sizes="128px"
+              sizes="48px"
             />
           </div>
           <span className="text-white/40 font-bold text-xl">&amp;</span>
