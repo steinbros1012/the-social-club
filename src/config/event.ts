@@ -13,5 +13,5 @@ export const EVENT_CONFIG = {
   contactEmail: "info@endlesssports.org",
   infoEmail: "amanda.wujcik@gmail.com",
   socialClubLogoUrl: "/logo.png",
-  endlessSportsLogoUrl: "https://endlesssports.org/wp-content/uploads/2026/04/Full-Logo-Color.png",
+  endlessSportsLogoUrl: "/endless-sports-logo.png",
 } as const

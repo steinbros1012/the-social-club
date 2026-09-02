@@ -137,31 +137,32 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
-        {/* Logo instead of spelled-out text */}
-        <div className="mb-6 flex justify-center">
-          <Image
-            src={EVENT_CONFIG.socialClubLogoUrl}
-            alt="The Social Club"
-            width={180}
-            height={180}
-            priority
-            className="object-contain drop-shadow-2xl"
-          />
-        </div>
-
-        {/* Presenter logos */}
-        <div className="flex items-center justify-center gap-4 mb-6">
-          <div className="relative w-36 h-10">
+        {/* Presenter line */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          <div className="relative w-32 h-10">
             <Image
               src={EVENT_CONFIG.endlessSportsLogoUrl}
               alt="Endless Sports"
               fill
-              className="object-contain object-right brightness-0 invert"
-              sizes="144px"
+              className="object-contain brightness-0 invert"
+              sizes="128px"
             />
           </div>
-          <span className="text-white/40 font-bold">×</span>
-          <span className="font-heading font-bold text-white/90 text-sm uppercase tracking-wide">We Will Walk With You</span>
+          <span className="text-white/50 font-bold text-lg">&amp;</span>
+          <span className="font-heading font-bold text-white text-sm uppercase tracking-wider">We Will Walk With You</span>
+          <span className="text-white/50 font-bold text-lg">present</span>
+        </div>
+
+        {/* Social Club logo */}
+        <div className="mb-6 flex justify-center">
+          <Image
+            src={EVENT_CONFIG.socialClubLogoUrl}
+            alt="The Social Club"
+            width={200}
+            height={200}
+            priority
+            className="object-contain drop-shadow-2xl"
+          />
         </div>
 
         <p className="text-xl sm:text-2xl text-white/90 font-light max-w-xl mx-auto mb-4 leading-relaxed">
