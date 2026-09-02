@@ -132,8 +132,7 @@ function Hero() {
         className="absolute inset-0 w-full h-full object-cover object-center"
         poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
       >
-        <source src="/hero.mp4" type="video/mp4" />
-        <source src="/hero.mov" type="video/quicktime" />
+        <source src="https://gdtoauyrnppqxgdz.public.blob.vercel-storage.com/hero.mp4" type="video/mp4" />
       </video>
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay" />
