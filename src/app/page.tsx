@@ -298,10 +298,10 @@ function About() {
   )
 }
 
-// ---------- EXPERIENCE CARDS ----------
+// ---------- EXPERIENCE ----------
 function Experience() {
   const { ref, visible } = useReveal()
-  const cards = [
+  const items = [
     {
       emoji: "🎯",
       title: "Your Night, Your Way",
@@ -340,8 +340,8 @@ function Experience() {
       className="py-24 bg-[#f3f5f5]"
       aria-labelledby="experience-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-14">
           <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
             What to Expect
           </p>
@@ -353,47 +353,31 @@ function Experience() {
           </h2>
         </div>
 
-        {/* All 6 photo cards */}
-        <div
-          ref={ref as React.RefObject<HTMLDivElement>}
-          className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal ${visible ? "visible" : ""}`}
+        <ul
+          ref={ref as React.RefObject<HTMLUListElement>}
+          className={`space-y-5 reveal ${visible ? "visible" : ""}`}
         >
-          {cards.map((card, i) => {
-            const photos = [
-              { src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg", alt: "Participants bowling together" },
-              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-14-scaled.jpg", alt: "Social Club activity" },
-              { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg", alt: "Group photo" },
-              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg", alt: "Lax clinic participants" },
-              { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-scaled.jpg", alt: "Group at an event" },
-              { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg", alt: "Participants celebrating" },
-            ]
-            const photo = photos[i]
-            return (
-              <article
-                key={card.title}
-                className="card-hover relative rounded-2xl overflow-hidden min-h-[260px] shadow-sm group"
+          {items.map((item) => (
+            <li key={item.title} className="flex items-start gap-4">
+              <svg
+                className="w-6 h-6 text-[#5ca8fe] flex-shrink-0 mt-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                aria-hidden="true"
               >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#074694]/90 via-[#074694]/40 to-transparent" />
-                <div className="absolute top-5 left-5">
-                  <div className="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-xl" aria-hidden="true">
-                    {card.emoji}
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-heading font-black text-lg uppercase leading-tight mb-1">{card.title}</h3>
-                  <p className="text-white/80 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: card.body }} />
-                </div>
-              </article>
-            )
-          })}
-        </div>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <p className="font-heading font-bold text-[#101218] text-base">
+                  {item.title}
+                </p>
+                <p className="text-[#4B4F58] text-sm leading-relaxed mt-0.5">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
@@ -402,14 +386,12 @@ function Experience() {
 
 // ---------- PHOTO CAROUSEL ----------
 const CAROUSEL_PHOTOS = [
-  { src: "https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg", alt: "Participants bowling together" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-scaled.jpg", alt: "Group at a Social Club event" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-9-scaled.jpg", alt: "Participants celebrating" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/lax-clinic-group-2-scaled.jpg", alt: "Group photo" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-15-scaled.jpg", alt: "Social Club activity" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-tunnel-1-scaled.jpg", alt: "Participants in a tunnel" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-14-scaled.jpg", alt: "Lax clinic photo" },
-  { src: "https://endlesssports.org/wp-content/uploads/2024/02/Lax-Clinic-12-scaled.jpg", alt: "Social Club participants" },
+  { src: "/photos/sc-1.jpg", alt: "Participants playing cards at The Social Club" },
+  { src: "/photos/sc-2.jpg", alt: "Playing sports at The Social Club" },
+  { src: "/photos/sc-3.jpg", alt: "Putting green at The Social Club" },
+  { src: "/photos/sc-4.jpg", alt: "Basketball at The Social Club" },
+  { src: "/photos/sc-5.jpg", alt: "Group sports activity at The Social Club" },
+  { src: "/photos/sc-6.jpg", alt: "Group photo at The Social Club" },
 ]
 
 function PhotoCarousel() {
