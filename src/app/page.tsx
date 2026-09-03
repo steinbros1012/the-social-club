@@ -103,7 +103,6 @@ function Hero() {
         muted
         loop
         playsInline
-        style={{ animationPlayState: "running" }}
         className="absolute inset-0 w-full h-full object-cover"
         style={{ objectPosition: "center 25%" }}
         poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
