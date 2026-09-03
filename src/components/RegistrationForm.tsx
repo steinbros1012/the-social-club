@@ -807,7 +807,7 @@ export default function RegistrationForm() {
             <button
               type="button"
               onClick={handleNext}
-              className="ml-auto px-8 py-3 rounded-xl bg-[#5ca8fe] hover:bg-[#4a96ec] text-white font-bold text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5ca8fe] focus-visible:ring-offset-2"
+              className="ml-auto px-8 py-3 rounded-xl bg-[#6694B5] hover:bg-[#5580a0] text-white font-bold text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5ca8fe] focus-visible:ring-offset-2"
             >
               Continue →
             </button>

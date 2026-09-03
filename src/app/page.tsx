@@ -44,7 +44,7 @@ function Nav() {
         </nav>
         <a
           href="#register"
-          className="hidden md:inline-flex ml-auto bg-[#5ca8fe] hover:bg-[#4a96ec] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring flex-shrink-0"
+          className="hidden md:inline-flex ml-auto bg-[#6694B5] hover:bg-[#5580a0] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring flex-shrink-0"
         >
           Register Now
         </a>
@@ -82,7 +82,7 @@ function Nav() {
           <a
             href="#register"
             onClick={() => setMenuOpen(false)}
-            className="mt-3 block text-center bg-[#5ca8fe] hover:bg-[#4a96ec] text-white font-bold px-5 py-3 rounded-full transition-colors focus-ring"
+            className="mt-3 block text-center bg-[#6694B5] hover:bg-[#5580a0] text-white font-bold px-5 py-3 rounded-full transition-colors focus-ring"
           >
             Register Now
           </a>
@@ -147,7 +147,7 @@ function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#register"
-            className="bg-[#5ca8fe] hover:bg-[#4a96ec] text-white font-bold text-lg px-10 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-[#5ca8fe]/30 hover:-translate-y-0.5 focus-ring"
+            className="bg-[#6694B5] hover:bg-[#5580a0] text-white font-bold text-lg px-10 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-[#5ca8fe]/30 hover:-translate-y-0.5 focus-ring"
           >
             Register Here
           </a>
@@ -200,7 +200,7 @@ function UpcomingDatesBanner() {
         </div>
         <a
           href="#register"
-          className="inline-flex bg-[#5ca8fe] hover:bg-[#4a96ec] text-white text-sm font-bold px-8 py-2.5 rounded-full transition-colors focus-ring"
+          className="inline-flex bg-[#6694B5] hover:bg-[#5580a0] text-white text-sm font-bold px-8 py-2.5 rounded-full transition-colors focus-ring"
         >
           Register Now
         </a>
@@ -443,9 +443,6 @@ function FAQ() {
     <section id="faq" className="py-24 bg-white" aria-labelledby="faq-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <p className="font-heading text-[#5ca8fe] text-xs font-bold uppercase tracking-[3px] mb-4">
-            Common Questions
-          </p>
           <h2
             id="faq-heading"
             className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight"
