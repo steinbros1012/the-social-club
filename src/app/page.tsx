@@ -117,24 +117,24 @@ function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
         {/* Presenter line */}
         <div className="flex flex-col items-center gap-3 mb-8">
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <div className="relative w-20 h-24">
+          <div className="flex items-center justify-center gap-5">
+            <div className="relative w-16 h-16">
               <Image
                 src={EVENT_CONFIG.endlessSportsLogoUrl}
                 alt="Endless Sports"
                 fill
                 className="object-contain drop-shadow-lg"
-                sizes="80px"
+                sizes="64px"
               />
             </div>
-            <span className="text-white/40 font-bold text-2xl">&amp;</span>
-            <div className="relative w-48 h-16">
+            <span className="text-white/50 font-light text-3xl">&amp;</span>
+            <div className="relative w-16 h-16">
               <Image
                 src="/wwwwy-logo.png"
                 alt="We Will Walk With You"
                 fill
-                className="object-contain drop-shadow-lg"
-                sizes="192px"
+                className="object-contain brightness-0 invert drop-shadow-lg"
+                sizes="64px"
               />
             </div>
           </div>
@@ -300,7 +300,7 @@ function Experience() {
     {
       emoji: "🛋️",
       title: "The Sideline",
-      body: "Need a break from the action? Enjoy a quiet and relaxed room where the lights are dim and the mood is chill.",
+      body: "Need a break? Enjoy a quiet and relaxed room where the lights are dim and the mood is chill.",
     },
     {
       emoji: "🍕",
