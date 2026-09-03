@@ -28,40 +28,44 @@ function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#074694]/95 backdrop-blur-sm shadow-lg">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center">
-        {/* Desktop nav — centered links + right-aligned register */}
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-6">
+        {/* Logos */}
+        <a href="#hero" className="flex items-center gap-3 focus-ring rounded-md flex-shrink-0">
+          <Image src={EVENT_CONFIG.endlessSportsLogoUrl} alt="Endless Sports" width={36} height={44} className="object-contain" />
+          <span className="text-[#074694]/40 font-light text-lg">&amp;</span>
+          <Image src="/wwwwy-logo.png" alt="We Will Walk With You" width={90} height={55} className="object-contain" />
+        </a>
+
+        {/* Desktop nav */}
         <nav className="hidden md:flex flex-1 items-center justify-center gap-10" aria-label="Main navigation">
-          <a href="#about" className="text-white/80 hover:text-white text-sm font-medium transition-colors focus-ring rounded">About</a>
-          <a href="#experience" className="text-white/80 hover:text-white text-sm font-medium transition-colors focus-ring rounded">Experience</a>
-          <a href="#faq" className="text-white/80 hover:text-white text-sm font-medium transition-colors focus-ring rounded">FAQ</a>
+          <a href="#about" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">About</a>
+          <a href="#experience" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">Experience</a>
+          <a href="#faq" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">FAQ</a>
         </nav>
         <a
           href="#register"
-          className="hidden md:inline-flex ml-auto bg-[#5ca8fe] hover:bg-[#4a96ec] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring"
+          className="hidden md:inline-flex ml-auto bg-[#5ca8fe] hover:bg-[#4a96ec] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring flex-shrink-0"
         >
           Register Now
         </a>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-white p-2 focus-ring rounded ml-auto"
+          className="md:hidden text-[#074694] p-2 focus-ring rounded ml-auto"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
         >
-          <span className="block w-5 h-0.5 bg-white mb-1 transition-all" />
-          <span className="block w-5 h-0.5 bg-white mb-1 transition-all" />
-          <span className="block w-5 h-0.5 bg-white transition-all" />
+          <span className="block w-5 h-0.5 bg-[#074694] mb-1 transition-all" />
+          <span className="block w-5 h-0.5 bg-[#074694] mb-1 transition-all" />
+          <span className="block w-5 h-0.5 bg-[#074694] transition-all" />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav
-          className="md:hidden bg-[#074694] border-t border-white/10 px-4 pb-4"
-          aria-label="Mobile navigation"
-        >
+        <nav className="md:hidden bg-white border-t border-[#e7e7e7] px-4 pb-4" aria-label="Mobile navigation">
           {[
             { href: "#about", label: "About" },
             { href: "#experience", label: "Experience" },
@@ -71,7 +75,7 @@ function Nav() {
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="block py-3 text-white/80 hover:text-white font-medium border-b border-white/10 last:border-0 focus-ring"
+              className="block py-3 text-[#4B4F58] hover:text-[#074694] font-medium border-b border-[#e7e7e7] last:border-0 focus-ring"
             >
               {label}
             </a>
@@ -115,28 +119,6 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
-        {/* Presenter line */}
-        <div className="flex flex-col items-center gap-3 mb-8">
-          <div className="flex items-center justify-center gap-6">
-            <Image
-              src={EVENT_CONFIG.endlessSportsLogoUrl}
-              alt="Endless Sports"
-              width={56}
-              height={70}
-              className="object-contain drop-shadow-lg"
-            />
-            <span className="text-white/50 font-light text-3xl">&amp;</span>
-            <Image
-              src="/wwwwy-logo.png"
-              alt="We Will Walk With You"
-              width={140}
-              height={85}
-              className="object-contain drop-shadow-lg"
-            />
-          </div>
-          <span className="text-white/70 font-medium text-sm tracking-widest">present</span>
-        </div>
-
         {/* Social Club logo */}
         <div className="mb-6 flex justify-center">
           <Image
