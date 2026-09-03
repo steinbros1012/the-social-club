@@ -263,7 +263,7 @@ function About() {
             "Open to everyone aged 13+",
             "No experience or ability level required",
             "Scholarships available, no one turned away",
-            "Not a drop-off event — parents/caregivers must remain on-site",
+            "Not a drop-off event - parents/caregivers must remain on-site",
           ].map((item) => (
             <li key={item} className="flex items-start gap-3">
               <svg className="w-5 h-5 text-[#5ca8fe] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
@@ -421,7 +421,7 @@ function RegistrationSection() {
             <strong className="text-[#101218]">
               ${EVENT_CONFIG.donationAmount} suggested donation
             </strong>{" "}
-            — scholarships available, no one turned away.
+            - scholarships available, no one turned away.
           </p>
         </div>
 
@@ -438,7 +438,7 @@ function FAQ() {
   const faqs = [
     {
       q: "How much does it cost?",
-      a: `The Social Club has a suggested $${EVENT_CONFIG.donationAmount} donation per participant. If that's a barrier, scholarships are available — just check the box on the registration form and you won't be charged.`,
+      a: `The Social Club has a suggested $${EVENT_CONFIG.donationAmount} donation per participant. If that's a barrier, scholarships are available - just check the box on the registration form and you won't be charged.`,
     },
     {
       q: "Do parents/caregivers need to register separately?",
@@ -446,7 +446,7 @@ function FAQ() {
     },
     {
       q: "Is there a capacity limit?",
-      a: `Yes — to keep the environment comfortable for everyone, we limit attendance to ${EVENT_CONFIG.capacity > 0 ? EVENT_CONFIG.capacity + " participants" : "a set number of participants"} per event. Register early to guarantee your spot.`,
+      a: `Yes - to keep the environment comfortable for everyone, we limit attendance to ${EVENT_CONFIG.capacity > 0 ? EVENT_CONFIG.capacity + " participants" : "a set number of participants"} per event. Register early to guarantee your spot.`,
     },
     {
       q: "Is the event accessible?",
@@ -454,7 +454,7 @@ function FAQ() {
     },
     {
       q: "Can we attend multiple months?",
-      a: "Absolutely — that's the idea! The Social Club is a recurring monthly program. Each month is a fresh experience, and the community gets richer the more you show up.",
+      a: "Absolutely - that's the idea! The Social Club is a recurring monthly program. Each month is a fresh experience, and the community gets richer the more you show up.",
     },
     {
       q: "What if we need to cancel?",

@@ -21,7 +21,7 @@ export default async function CanceledPage({ searchParams }: PageProps) {
             Payment Canceled
           </h1>
           <p className="text-white/70 text-base">
-            No worries — your spot hasn&apos;t been given away yet.
+            No worries - your spot hasn&apos;t been given away yet.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export default async function CanceledPage({ searchParams }: PageProps) {
             </p>
             <p className="text-[#4B4F58] text-sm leading-relaxed">
               If the ${EVENT_CONFIG.donationAmount} suggested donation is a barrier, you can
-              register for free. Just check the scholarship box on the registration form —
+              register for free. Just check the scholarship box on the registration form -
               no explanation needed.
             </p>
           </div>

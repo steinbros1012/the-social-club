@@ -18,7 +18,7 @@ const notoSans = Noto_Sans({
 export const metadata: Metadata = {
   title: "The Social Club | Endless Sports + We Will Walk With You",
   description:
-    "A welcoming social hangout for teens and young adults with disabilities. Connect, have fun, and be yourself — ages 13+, $5 suggested donation.",
+    "A welcoming social hangout for teens and young adults with disabilities. Connect, have fun, and be yourself - ages 13+, $5 suggested donation.",
   openGraph: {
     title: "The Social Club",
     description:

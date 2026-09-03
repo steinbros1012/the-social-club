@@ -467,7 +467,7 @@ function StepPreferences({
             Waiver & Release
           </p>
           <div className="bg-[#f3f5f5] rounded-xl p-4 text-xs text-[#4B4F58] leading-relaxed mb-4 max-h-48 overflow-y-auto border border-[#e7e7e7]">
-            <p className="font-bold text-[#101218] mb-2 uppercase tracking-wide">Endless Sports &amp; We Will Walk With You — Waiver / Release</p>
+            <p className="font-bold text-[#101218] mb-2 uppercase tracking-wide">Endless Sports &amp; We Will Walk With You - Waiver / Release</p>
             <p className="mb-2">I HEREBY ASSUME ALL OF THE RISKS OF PARTICIPATING AND/OR VOLUNTEERING IN THIS ACTIVITY OR EVENT, including by way of example and not limitation, any risks that may arise from negligence or carelessness on the part of the persons or entities being released, from dangerous or defective equipment or property owned, maintained, or controlled by them, or because of their possible liability without fault. I acknowledge that this Accident Waiver and Release of Liability Form will be used by the event holders, sponsors, and organizers of the activity or event in which I may participate, and that it will govern my actions and responsibilities at said activity or event. In consideration of my application and permitting me to participate in this event, I hereby take action for myself, my executors, administrators, heirs, next of kin, successors, and assigns as follows:</p>
             <p className="mb-2">(A) I WAIVE, RELEASE, AND DISCHARGE from any and all liability, including but not limited to, liability arising from the negligence or fault of the entities or persons released, for my death, disability, personal injury, property damage, property theft, or actions of any kind which may hereafter occur to me including my traveling to and from this event, THE FOLLOWING ENTITIES OR PERSONS: Endless Sports and We Will Walk With You, their directors, officers, employees, volunteers, representatives, and agents, the activity or event holders, activity or event sponsors, activity or event volunteers;</p>
             <p className="mb-2">(B) I INDEMNIFY, HOLD HARMLESS, AND PROMISE NOT TO SUE the entities or persons mentioned in this paragraph from any and all liabilities or claims made as a result of participation in this activity or event, whether caused by the negligence of release or otherwise. I acknowledge that Endless Sports and We Will Walk With You and their directors, officers, volunteers, representatives, and agents are NOT responsible for the errors, omissions, acts, or failures to act of any party or entity conducting a specific event or activity on behalf of Endless Sports and We Will Walk With You.</p>
@@ -601,7 +601,7 @@ function StepReview({
           </p>
           {data.scholarshipRequested ? (
             <p className="text-green-700 font-medium text-sm">
-              Scholarship applied — no payment required. ✓
+              Scholarship applied - no payment required. ✓
             </p>
           ) : (
             <div className="flex items-center justify-between">
@@ -631,8 +631,8 @@ function StepReview({
         {submitting
           ? "Processing…"
           : data.scholarshipRequested
-          ? "Complete Registration — Free"
-          : `Proceed to Payment — $${EVENT_CONFIG.donationAmount}`}
+          ? "Complete Registration - Free"
+          : `Proceed to Payment - $${EVENT_CONFIG.donationAmount}`}
       </button>
 
       {!data.scholarshipRequested && (
