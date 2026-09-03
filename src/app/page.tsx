@@ -109,7 +109,7 @@ function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ objectPosition: "center 25%" }}
         poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
-        ref={(el) => { if (el) el.playbackRate = 0.6 }}
+        ref={(el) => { if (el) el.playbackRate = 0.5 }}
       >
         <source src="https://gdtoauyrnppqxgdz.public.blob.vercel-storage.com/hero.mp4" type="video/mp4" />
       </video>
