@@ -128,13 +128,13 @@ function Hero() {
               />
             </div>
             <span className="text-white/50 font-light text-3xl">&amp;</span>
-            <div className="relative w-16 h-16">
+            <div className="relative w-28 h-16">
               <Image
                 src="/wwwwy-logo.png"
                 alt="We Will Walk With You"
                 fill
-                className="object-contain brightness-0 invert drop-shadow-lg"
-                sizes="64px"
+                className="object-contain drop-shadow-lg"
+                sizes="112px"
               />
             </div>
           </div>
