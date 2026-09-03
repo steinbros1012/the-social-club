@@ -197,9 +197,9 @@ function Hero() {
 // ---------- UPCOMING DATES BANNER ----------
 function UpcomingDatesBanner() {
   const dates = [
-    { label: "Saturday, September 26th", time: "12:00PM – 1:30PM", checkin: "Check-in 11:45AM" },
-    { label: "Saturday, October 24th", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
-    { label: "Saturday, November 21st", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
+    { label: "Sat, September 26th", time: "12:00PM – 1:30PM", checkin: "Check-in 11:45AM" },
+    { label: "Sat, October 24th", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
+    { label: "Sat, November 21st", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
   ]
   return (
     <section className="bg-[#074694] text-white py-8 px-4" aria-label="Upcoming event dates">
@@ -210,7 +210,7 @@ function UpcomingDatesBanner() {
         <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 mb-6">
           {dates.map((d) => (
             <div key={d.label} className="flex-1 bg-white/10 rounded-2xl px-5 py-4 border border-white/20">
-              <p className="font-heading font-black text-white text-sm mb-1">{d.label}</p>
+              <p className="font-heading font-black text-white text-sm mb-1 whitespace-nowrap">{d.label}</p>
               <p className="text-white/90 text-sm font-medium">{d.time}</p>
               <p className="text-white/50 text-xs mt-1">{d.checkin}</p>
             </div>
