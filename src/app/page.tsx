@@ -33,7 +33,6 @@ function Nav() {
         {/* Logos */}
         <a href="#hero" className="flex items-center gap-3 focus-ring rounded-md flex-shrink-0">
           <Image src={EVENT_CONFIG.endlessSportsLogoUrl} alt="Endless Sports" width={36} height={44} className="object-contain" />
-          <span className="text-[#074694]/40 font-light text-lg">&amp;</span>
           <Image src="/wwwwy-logo.png" alt="We Will Walk With You" width={90} height={55} className="object-contain" />
         </a>
 
@@ -193,7 +192,7 @@ function UpcomingDatesBanner() {
               <p className="text-white/50 text-xs mt-1">{d.checkin}</p>
             </div>
           ))}
-          <div className="flex-1 bg-white/5 rounded-2xl px-5 py-4 border border-white/10">
+          <div className="flex-1 bg-white/5 rounded-2xl px-5 py-4 border border-white/10 text-center">
             <p className="font-heading font-black text-white/50 text-sm mb-1">December</p>
             <p className="text-white/40 text-sm">No Social Club</p>
             <p className="text-white/40 text-xs mt-1">Happy Holidays! 🎄</p>
