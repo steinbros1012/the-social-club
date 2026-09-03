@@ -165,9 +165,9 @@
 .hero-overlay {
   background: linear-gradient(
     to bottom,
-    rgba(7, 70, 148, 0.82) 0%,
-    rgba(7, 70, 148, 0.70) 50%,
-    rgba(16, 18, 24, 0.88) 100%
+    rgba(7, 70, 148, 0.55) 0%,
+    rgba(7, 70, 148, 0.45) 50%,
+    rgba(16, 18, 24, 0.72) 100%
   );
 }
 
