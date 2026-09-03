@@ -104,7 +104,7 @@ function Hero() {
         loop
         playsInline
         style={{ animationPlayState: "running" }}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover object-top"
         poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
         ref={(el) => { if (el) el.playbackRate = 0.6 }}
       >
