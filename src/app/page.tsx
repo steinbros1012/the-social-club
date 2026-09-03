@@ -117,26 +117,22 @@ function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-16">
         {/* Presenter line */}
         <div className="flex flex-col items-center gap-3 mb-8">
-          <div className="flex items-center justify-center gap-5">
-            <div className="relative w-16 h-16">
-              <Image
-                src={EVENT_CONFIG.endlessSportsLogoUrl}
-                alt="Endless Sports"
-                fill
-                className="object-contain drop-shadow-lg"
-                sizes="64px"
-              />
-            </div>
+          <div className="flex items-center justify-center gap-6">
+            <Image
+              src={EVENT_CONFIG.endlessSportsLogoUrl}
+              alt="Endless Sports"
+              width={56}
+              height={70}
+              className="object-contain drop-shadow-lg"
+            />
             <span className="text-white/50 font-light text-3xl">&amp;</span>
-            <div className="relative w-28 h-16">
-              <Image
-                src="/wwwwy-logo.png"
-                alt="We Will Walk With You"
-                fill
-                className="object-contain drop-shadow-lg"
-                sizes="112px"
-              />
-            </div>
+            <Image
+              src="/wwwwy-logo.png"
+              alt="We Will Walk With You"
+              width={140}
+              height={85}
+              className="object-contain drop-shadow-lg"
+            />
           </div>
           <span className="text-white/70 font-medium text-sm tracking-widest">present</span>
         </div>
