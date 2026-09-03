@@ -199,8 +199,8 @@ function Hero() {
 function UpcomingDatesBanner() {
   const dates = [
     { label: "Saturday, September 26th", time: "12:00PM – 1:30PM", checkin: "Check-in 11:45AM" },
-    { label: "Friday, October 24th", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
-    { label: "Friday, November 21st", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
+    { label: "Saturday, October 24th", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
+    { label: "Saturday, November 21st", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
   ]
   return (
     <section className="bg-[#074694] text-white py-8 px-4" aria-label="Upcoming event dates">
