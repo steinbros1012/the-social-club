@@ -306,7 +306,7 @@ function Experience() {
         <div className="mb-14">
           <h2
             id="experience-heading"
-            className="font-heading text-4xl sm:text-5xl font-black rainbow-text uppercase leading-tight"
+            className="font-heading text-3xl sm:text-4xl font-black rainbow-text uppercase leading-tight"
           >
             The Experience
           </h2>
@@ -389,7 +389,7 @@ function RegistrationSection() {
         <div className="text-center mb-12">
           <h2
             id="register-heading"
-            className="font-heading text-4xl sm:text-5xl font-black rainbow-text uppercase leading-tight mb-4"
+            className="font-heading text-3xl sm:text-4xl font-black rainbow-text uppercase leading-tight mb-4"
           >
             Register Now
           </h2>
@@ -451,7 +451,7 @@ function FAQ() {
         <div className="text-center mb-16">
           <h2
             id="faq-heading"
-            className="font-heading text-4xl sm:text-5xl font-black rainbow-text uppercase leading-tight"
+            className="font-heading text-3xl sm:text-4xl font-black rainbow-text uppercase leading-tight"
           >
             FAQ
           </h2>
