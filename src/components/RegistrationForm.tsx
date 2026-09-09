@@ -626,7 +626,7 @@ function StepReview({
       <button
         type="submit"
         disabled={submitting}
-        className="w-full rainbow-btn disabled:opacity-60 disabled:cursor-not-allowed font-heading font-black text-lg py-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6EB104] focus-visible:ring-offset-2"
+        className="w-full bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors disabled:opacity-60 disabled:cursor-not-allowed font-heading font-black text-lg py-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6EB104] focus-visible:ring-offset-2"
       >
         {submitting
           ? "Processing…"
@@ -877,7 +877,7 @@ export default function RegistrationForm() {
             <button
               type="button"
               onClick={handleNext}
-              className="ml-auto px-8 py-3 rounded-xl rainbow-btn font-bold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6EB104] focus-visible:ring-offset-2"
+              className="ml-auto px-8 py-3 rounded-xl bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors font-bold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6EB104] focus-visible:ring-offset-2"
             >
               Continue →
             </button>

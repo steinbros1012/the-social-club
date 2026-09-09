@@ -44,7 +44,7 @@ function Nav() {
         </nav>
         <a
           href="#register"
-          className="hidden md:inline-flex ml-auto rainbow-btn text-sm font-bold px-5 py-2 rounded-full focus-ring flex-shrink-0"
+          className="hidden md:inline-flex ml-auto bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors text-sm font-bold px-5 py-2 rounded-full focus-ring flex-shrink-0"
         >
           Register Now
         </a>
@@ -82,7 +82,7 @@ function Nav() {
           <a
             href="#register"
             onClick={() => setMenuOpen(false)}
-            className="mt-3 block text-center rainbow-btn font-bold px-5 py-3 rounded-full focus-ring"
+            className="mt-3 block text-center bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors font-bold px-5 py-3 rounded-full focus-ring"
           >
             Register Now
           </a>
@@ -147,7 +147,7 @@ function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#register"
-            className="rainbow-btn font-bold text-lg px-10 py-4 rounded-full focus-ring"
+            className="bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors font-bold text-lg px-10 py-4 rounded-full focus-ring"
           >
             Register Here
           </a>
@@ -200,7 +200,7 @@ function UpcomingDatesBanner() {
         </div>
         <a
           href="#register"
-          className="inline-flex rainbow-btn text-sm font-bold px-8 py-2.5 rounded-full focus-ring"
+          className="inline-flex bg-[#6EB104] hover:bg-[#5c9303] text-white transition-colors text-sm font-bold px-8 py-2.5 rounded-full focus-ring"
         >
           Register Now
         </a>
