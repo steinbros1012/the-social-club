@@ -403,7 +403,7 @@ function RegistrationSection() {
           <div className="inline-flex items-start gap-2 bg-[#008897]/8 border border-[#008897]/20 rounded-xl px-5 py-3 max-w-xl mx-auto text-sm text-[#4B4F58] text-left">
             <span className="text-[#008897] mt-0.5 flex-shrink-0">ℹ️</span>
             <p>
-              <strong className="text-[#008897]">Please note:</strong> A minimum of 20 registered participants is required to hold each event. If we do not reach that number, registered families will be notified in advance and offered a refund or credit toward the next event.
+              <strong className="text-[#008897]">Please note:</strong> A minimum of 20 registered participants is required to hold each event. If we do not reach that number, registered families will be notified and offered a refund or credit toward the next event.
             </p>
           </div>
         </div>
