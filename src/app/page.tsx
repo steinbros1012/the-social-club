@@ -44,7 +44,7 @@ function Nav() {
         </nav>
         <a
           href="#register"
-          className="hidden md:inline-flex ml-auto bg-[#6694B5] hover:bg-[#5580a0] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring flex-shrink-0"
+          className="hidden md:inline-flex ml-auto bg-[#D54220] hover:bg-[#b83a1c] text-white text-sm font-bold px-5 py-2 rounded-full transition-colors focus-ring flex-shrink-0"
         >
           Register Now
         </a>
@@ -82,7 +82,7 @@ function Nav() {
           <a
             href="#register"
             onClick={() => setMenuOpen(false)}
-            className="mt-3 block text-center bg-[#6694B5] hover:bg-[#5580a0] text-white font-bold px-5 py-3 rounded-full transition-colors focus-ring"
+            className="mt-3 block text-center bg-[#D54220] hover:bg-[#b83a1c] text-white font-bold px-5 py-3 rounded-full transition-colors focus-ring"
           >
             Register Now
           </a>
@@ -147,7 +147,7 @@ function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#register"
-            className="bg-[#6694B5] hover:bg-[#5580a0] text-white font-bold text-lg px-10 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-[#5ca8fe]/30 hover:-translate-y-0.5 focus-ring"
+            className="bg-[#D54220] hover:bg-[#b83a1c] text-white font-bold text-lg px-10 py-4 rounded-full transition-all hover:shadow-lg hover:shadow-[#D54220]/30 hover:-translate-y-0.5 focus-ring"
           >
             Register Here
           </a>
@@ -200,7 +200,7 @@ function UpcomingDatesBanner() {
         </div>
         <a
           href="#register"
-          className="inline-flex bg-[#6694B5] hover:bg-[#5580a0] text-white text-sm font-bold px-8 py-2.5 rounded-full transition-colors focus-ring"
+          className="inline-flex bg-[#6EB104] hover:bg-[#5c9303] text-white text-sm font-bold px-8 py-2.5 rounded-full transition-colors focus-ring"
         >
           Register Now
         </a>
@@ -221,7 +221,7 @@ function About() {
       >
         <h2
           id="about-heading"
-          className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-none mb-6 whitespace-nowrap"
+          className="font-heading text-4xl sm:text-5xl font-black text-[#D54220] uppercase leading-none mb-6 whitespace-nowrap"
         >
           What is The Social Club?
         </h2>
@@ -243,7 +243,7 @@ function About() {
             "Not a drop-off event - parents/caregivers must remain on-site",
           ].map((item) => (
             <li key={item} className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#5ca8fe] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <svg className="w-5 h-5 text-[#D54220] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span className="text-[#4B4F58] text-base">{item}</span>
@@ -306,7 +306,7 @@ function Experience() {
         <div className="mb-14">
           <h2
             id="experience-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#6EB104] uppercase leading-tight"
           >
             The Experience
           </h2>
@@ -319,7 +319,7 @@ function Experience() {
           {items.map((item) => (
             <li key={item.title} className="flex items-start gap-4">
               <svg
-                className="w-6 h-6 text-[#5ca8fe] flex-shrink-0 mt-0.5"
+                className="w-6 h-6 text-[#6EB104] flex-shrink-0 mt-0.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -389,7 +389,7 @@ function RegistrationSection() {
         <div className="text-center mb-12">
           <h2
             id="register-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight mb-4"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#008897] uppercase leading-tight mb-4"
           >
             Register Now
           </h2>
@@ -400,10 +400,10 @@ function RegistrationSection() {
             </strong>{" "}
             - scholarships available, no one turned away.
           </p>
-          <div className="inline-flex items-start gap-2 bg-[#074694]/8 border border-[#074694]/20 rounded-xl px-5 py-3 max-w-xl mx-auto text-sm text-[#4B4F58] text-left">
-            <span className="text-[#074694] mt-0.5 flex-shrink-0">ℹ️</span>
+          <div className="inline-flex items-start gap-2 bg-[#008897]/8 border border-[#008897]/20 rounded-xl px-5 py-3 max-w-xl mx-auto text-sm text-[#4B4F58] text-left">
+            <span className="text-[#008897] mt-0.5 flex-shrink-0">ℹ️</span>
             <p>
-              <strong className="text-[#074694]">Please note:</strong> A minimum of 20 registered participants is required to hold each event. If we do not reach that number, registered families will be notified at least one week in advance and offered a full refund or credit toward the next event.
+              <strong className="text-[#008897]">Please note:</strong> A minimum of 20 registered participants is required to hold each event. If we do not reach that number, registered families will be notified at least one week in advance and offered a full refund or credit toward the next event.
             </p>
           </div>
         </div>
@@ -451,7 +451,7 @@ function FAQ() {
         <div className="text-center mb-16">
           <h2
             id="faq-heading"
-            className="font-heading text-4xl sm:text-5xl font-black text-[#074694] uppercase leading-tight"
+            className="font-heading text-4xl sm:text-5xl font-black text-[#D54220] uppercase leading-tight"
           >
             FAQ
           </h2>
@@ -479,11 +479,11 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         aria-controls={id}
         className="w-full flex items-start justify-between gap-4 text-left group focus-ring rounded-lg px-1"
       >
-        <span className="font-heading font-bold text-[#101218] text-base group-hover:text-[#074694] transition-colors">
+        <span className="font-heading font-bold text-[#101218] text-base group-hover:text-[#D54220] transition-colors">
           {question}
         </span>
         <span
-          className={`flex-shrink-0 w-6 h-6 rounded-full bg-[#5ca8fe]/10 text-[#5ca8fe] flex items-center justify-center text-sm font-bold transition-transform ${open ? "rotate-45" : ""}`}
+          className={`flex-shrink-0 w-6 h-6 rounded-full bg-[#008897]/10 text-[#008897] flex items-center justify-center text-sm font-bold transition-transform ${open ? "rotate-45" : ""}`}
           aria-hidden="true"
         >
           +
@@ -549,13 +549,13 @@ function Footer() {
             </p>
             <a
               href={`mailto:${EVENT_CONFIG.contactEmail}`}
-              className="text-[#5ca8fe] hover:text-white text-sm transition-colors focus-ring rounded block mb-2"
+              className="text-[#008897] hover:text-white text-sm transition-colors focus-ring rounded block mb-2"
             >
               {EVENT_CONFIG.contactEmail}
             </a>
             <a
               href="mailto:amanda.wujcik@gmail.com"
-              className="text-[#5ca8fe] hover:text-white text-sm transition-colors focus-ring rounded block"
+              className="text-[#008897] hover:text-white text-sm transition-colors focus-ring rounded block"
             >
               amanda.wujcik@gmail.com
             </a>
