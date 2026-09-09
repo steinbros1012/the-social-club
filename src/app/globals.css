@@ -210,6 +210,24 @@
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
+/* WWWWY rainbow gradient — orange → green → teal */
+.rainbow-btn {
+  background: linear-gradient(90deg, #D54220 0%, #6EB104 50%, #008897 100%);
+  color: white;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.rainbow-btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.rainbow-text {
+  background: linear-gradient(90deg, #D54220 0%, #6EB104 50%, #008897 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Card lift on hover */
 .card-hover {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
