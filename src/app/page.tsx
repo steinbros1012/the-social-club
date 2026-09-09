@@ -221,7 +221,7 @@ function About() {
       >
         <h2
           id="about-heading"
-          className="font-heading text-2xl sm:text-3xl lg:text-4xl font-black rainbow-text uppercase leading-tight mb-6 pr-2"
+          className="font-heading text-4xl sm:text-5xl font-black rainbow-text uppercase leading-tight mb-6 pr-6"
         >
           What is The Social Club?
         </h2>
