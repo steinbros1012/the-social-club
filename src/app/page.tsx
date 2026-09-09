@@ -111,7 +111,7 @@ function Hero() {
         poster="https://endlesssports.org/wp-content/uploads/2026/01/Group-Bowling-Week-1-scaled.jpg"
         ref={(el) => { if (el) el.playbackRate = 0.5 }}
       >
-        <source src="https://gdtoauyrnppqxgdz.public.blob.vercel-storage.com/hero.mp4" type="video/mp4" />
+        <source src="https://gdtoauyrnppqxgdz.public.blob.vercel-storage.com/hero-Et59hKUKgIKhG5jfyFcVsgqmM0I43M.mp4" type="video/mp4" />
       </video>
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay" />
