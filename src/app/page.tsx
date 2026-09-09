@@ -393,13 +393,19 @@ function RegistrationSection() {
           >
             Register Now
           </h2>
-          <p className="text-[#4B4F58] text-lg max-w-xl mx-auto">
+          <p className="text-[#4B4F58] text-lg max-w-xl mx-auto mb-4">
             Secure your spot at The Social Club.{" "}
             <strong className="text-[#101218]">
               ${EVENT_CONFIG.donationAmount} suggested donation
             </strong>{" "}
             - scholarships available, no one turned away.
           </p>
+          <div className="inline-flex items-start gap-2 bg-[#074694]/8 border border-[#074694]/20 rounded-xl px-5 py-3 max-w-xl mx-auto text-sm text-[#4B4F58] text-left">
+            <span className="text-[#074694] mt-0.5 flex-shrink-0">ℹ️</span>
+            <p>
+              <strong className="text-[#074694]">Please note:</strong> A minimum of 20 registered participants is required to hold each event. If we do not reach that number, registered families will be notified at least one week in advance and offered a full refund or credit toward the next event.
+            </p>
+          </div>
         </div>
 
         <div className="bg-white rounded-3xl shadow-xl border border-[#e7e7e7] overflow-hidden">

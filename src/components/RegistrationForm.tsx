@@ -637,7 +637,7 @@ function StepReview({
 
       {!data.scholarshipRequested && (
         <p className="text-center text-[#4B4F58] text-xs mt-3">
-          You&apos;ll be redirected to a secure Stripe checkout page.
+          You&apos;ll be shown PayPal and Venmo payment options on the next screen.
         </p>
       )}
     </fieldset>
@@ -666,6 +666,62 @@ function RegistrationClosed() {
   )
 }
 
+// ---------- PAYMENT OPTIONS SCREEN ----------
+function PaymentOptions({
+  paypalUrl,
+  venmoUrl,
+  participantName,
+  amount,
+}: {
+  paypalUrl: string
+  venmoUrl: string
+  participantName: string
+  amount: number
+}) {
+  return (
+    <div className="p-8 text-center">
+      <div className="text-4xl mb-4" aria-hidden="true">🎉</div>
+      <h3 className="font-heading font-black text-[#074694] text-2xl uppercase mb-2">
+        You&apos;re Almost In!
+      </h3>
+      <p className="text-[#4B4F58] text-sm mb-8">
+        Registration for <strong className="text-[#101218]">{participantName}</strong> is saved.
+        Complete your ${amount} suggested donation via PayPal or Venmo to confirm your spot.
+      </p>
+
+      <div className="flex flex-col gap-4 max-w-xs mx-auto mb-8">
+        <a
+          href={paypalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 bg-[#003087] hover:bg-[#002070] text-white font-bold text-sm py-4 rounded-2xl transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" aria-hidden="true">
+            <path d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 0 0-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 0 1-.794.679H7.72a.483.483 0 0 1-.477-.558L8.494 13h2.618c4.398 0 7.743-1.86 8.955-6.522zM7.365 4h6.27c.743 0 1.44.049 2.077.154 1.769.292 3.093 1.132 3.588 2.894C19.8 7.6 19.67 8.59 19.27 9.4c-.07.142-.148.28-.234.413C17.8 6.793 15.67 5.5 12.086 5.5H7.57a.9.9 0 0 0-.89.76L5.343 15H3.23a.483.483 0 0 1-.478-.559L4.898 4.76A.9.9 0 0 1 5.788 4z"/>
+          </svg>
+          Pay with PayPal
+        </a>
+
+        <a
+          href={venmoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 bg-[#008CFF] hover:bg-[#0070cc] text-white font-bold text-sm py-4 rounded-2xl transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white" aria-hidden="true">
+            <path d="M19.5 3c.5 2.1 0 4.4-1 6.3L13 21H7.5L5 3h5l1.5 10.5L16 3z"/>
+          </svg>
+          Pay with Venmo — @WeWillWalkWithYou
+        </a>
+      </div>
+
+      <p className="text-[#4B4F58] text-xs leading-relaxed max-w-sm mx-auto">
+        Include <strong>{participantName}</strong> in your payment note. Your spot is held for 48 hours — if we don&apos;t receive payment your registration may be released.
+      </p>
+    </div>
+  )
+}
+
 // ---------- MAIN COMPONENT ----------
 export default function RegistrationForm() {
   const [step, setStep] = useState(1)
@@ -673,6 +729,12 @@ export default function RegistrationForm() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitting, setSubmitting] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
+  const [paymentOptions, setPaymentOptions] = useState<{
+    paypalUrl: string
+    venmoUrl: string
+    participantName: string
+    amount: number
+  } | null>(null)
 
   const TOTAL_STEPS = 4
 
@@ -752,11 +814,15 @@ export default function RegistrationForm() {
       }
 
       if (json.type === "scholarship") {
-        // Scholarship — redirect to success page
         window.location.href = `/registration/success?type=scholarship`
-      } else if (json.type === "payment" && json.checkoutUrl) {
-        // Payment — redirect to Stripe
-        window.location.href = json.checkoutUrl
+      } else if (json.type === "payment") {
+        setPaymentOptions({
+          paypalUrl: json.paypalUrl,
+          venmoUrl: json.venmoUrl,
+          participantName: json.participantName,
+          amount: json.amount,
+        })
+        setSubmitting(false)
       } else {
         setServerError("Unexpected response. Please try again.")
         setSubmitting(false)
@@ -765,6 +831,10 @@ export default function RegistrationForm() {
       setServerError("A network error occurred. Please check your connection and try again.")
       setSubmitting(false)
     }
+  }
+
+  if (paymentOptions) {
+    return <PaymentOptions {...paymentOptions} />
   }
 
   return (

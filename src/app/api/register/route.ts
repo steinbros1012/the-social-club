@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase'
-import { getStripe } from '@/lib/stripe'
 import { sendConfirmationEmail } from '@/lib/email'
 import { EVENT_CONFIG } from '@/config/event'
 import type { RegistrationFormData } from '@/types/registration'
@@ -96,14 +95,15 @@ export async function POST(req: NextRequest) {
           isScholarship: true,
         })
       } catch (emailError) {
-        // Log but don't fail registration if email fails
         console.error('Scholarship confirmation email failed:', emailError)
       }
 
       return NextResponse.json({ success: true, type: 'scholarship', registrationId: data.id })
     }
 
-    // Payment path: create pending registration, then redirect to Stripe Checkout
+    // Payment path: save pending registration, return PayPal + Venmo links
+    const participantName = `${body.participantFirstName} ${body.participantLastName}`
+
     const { data, error } = await getSupabaseAdmin()
       .from('registrations')
       .insert({
@@ -130,45 +130,21 @@ export async function POST(req: NextRequest) {
 
     if (error) throw error
 
-    const origin =
-      req.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    // Build PayPal URL with amount and note pre-filled
+    const paypalUrl = `https://www.paypal.com/donate/?hosted_button_id=F5AW5VJ5QHK7L`
 
-    const session = await getStripe().checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'The Social Club – Registration Donation',
-              description: `Registration for ${body.participantFirstName} ${body.participantLastName}`,
-            },
-            unit_amount: EVENT_CONFIG.donationAmount * 100,
-          },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      customer_email: body.caregiverEmail,
-      metadata: {
-        registrationId: data.id,
-        participantName: `${body.participantFirstName} ${body.participantLastName}`,
-      },
-      success_url: `${origin}/registration/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/registration/canceled?registration_id=${data.id}`,
-    })
-
-    // Persist the Stripe session ID so the webhook can correlate
-    await getSupabaseAdmin()
-      .from('registrations')
-      .update({ stripe_session_id: session.id })
-      .eq('id', data.id)
+    // Venmo deep link with note pre-filled
+    const venmoNote = encodeURIComponent(`Social Club - ${participantName}`)
+    const venmoUrl = `https://venmo.com/u/WeWillWalkWithYou?txn=pay&note=${venmoNote}&amount=${EVENT_CONFIG.donationAmount}`
 
     return NextResponse.json({
       success: true,
       type: 'payment',
-      checkoutUrl: session.url,
       registrationId: data.id,
+      paypalUrl,
+      venmoUrl,
+      participantName,
+      amount: EVENT_CONFIG.donationAmount,
     })
   } catch (err) {
     console.error('Registration error:', err)
