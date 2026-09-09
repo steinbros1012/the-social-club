@@ -14,7 +14,7 @@ export async function sendResendConfirmation({
   caregiverName,
 }: SendResendConfirmationParams): Promise<void> {
   await resend.emails.send({
-    from: 'The Social Club <onboarding@resend.dev>',
+    from: 'The Social Club <noreply@endlesssports.org>',
     to,
     subject: 'Thank you for registering for The Social Club!',
     html: `
