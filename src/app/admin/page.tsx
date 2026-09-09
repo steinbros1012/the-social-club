@@ -107,19 +107,22 @@ function RegistrationDrawer({
   onMarkPaid,
   onMarkComplete,
   onCancel,
+  onDelete,
 }: {
   reg: Registration
   onClose: () => void
   onMarkPaid: (id: string) => Promise<void>
   onMarkComplete: (id: string) => Promise<void>
   onCancel: (id: string) => Promise<void>
+  onDelete: (id: string) => Promise<void>
 }) {
   const [busy, setBusy] = useState(false)
 
-  async function act(fn: (id: string) => Promise<void>) {
+  async function act(fn: (id: string) => Promise<void>, close = false) {
     setBusy(true)
     await fn(reg.id)
     setBusy(false)
+    if (close) onClose()
   }
 
   return (
@@ -167,12 +170,19 @@ function RegistrationDrawer({
             {reg.registration_status !== "canceled" && (
               <button
                 disabled={busy}
-                onClick={() => { if (confirm("Cancel this registration?")) act(onCancel) }}
+                onClick={() => { if (confirm("Cancel this registration?")) void act(onCancel) }}
                 className="px-4 py-2 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 text-xs font-bold transition-colors disabled:opacity-50"
               >
                 Cancel
               </button>
             )}
+            <button
+              disabled={busy}
+              onClick={() => { if (confirm("Permanently delete this registration? This cannot be undone.")) void act(onDelete, true) }}
+              className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-colors disabled:opacity-50"
+            >
+              Delete
+            </button>
           </div>
 
           <hr className="border-[#e7e7e7]" />
@@ -298,6 +308,16 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const markPaid = (id: string) => patchRegistration(id, { payment_status: "paid", registration_status: "complete" })
   const markComplete = (id: string) => patchRegistration(id, { registration_status: "complete" })
   const cancelReg = (id: string) => patchRegistration(id, { registration_status: "canceled" })
+
+  async function deleteReg(id: string) {
+    const res = await fetch(`/api/admin/registrations/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${ADMIN_SECRET}` },
+    })
+    if (!res.ok) { alert("Delete failed. Please try again."); return }
+    setRegistrations((prev) => prev.filter((r) => r.id !== id))
+    setSelected(null)
+  }
 
   // Stats
   const total = registrations.length
@@ -504,6 +524,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           onMarkPaid={markPaid}
           onMarkComplete={markComplete}
           onCancel={cancelReg}
+          onDelete={deleteReg}
         />
       )}
     </div>

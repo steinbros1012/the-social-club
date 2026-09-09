@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase'
 import { sendConfirmationEmail } from '@/lib/email'
+import { sendResendConfirmation } from '@/lib/resend-email'
 import { EVENT_CONFIG } from '@/config/event'
 import type { RegistrationFormData } from '@/types/registration'
 
@@ -42,21 +43,6 @@ export async function POST(req: NextRequest) {
       if (count !== null && count >= EVENT_CONFIG.capacity) {
         return NextResponse.json({ error: 'Registration is full' }, { status: 409 })
       }
-    }
-
-    // Duplicate registration guard (same participant email)
-    const { data: existing } = await getSupabaseAdmin()
-      .from('registrations')
-      .select('id')
-      .eq('participant_email', body.participantEmail)
-      .in('registration_status', ['complete', 'incomplete'])
-      .limit(1)
-
-    if (existing && existing.length > 0) {
-      return NextResponse.json(
-        { error: 'A registration with this email already exists' },
-        { status: 409 },
-      )
     }
 
     if (body.scholarshipRequested) {
@@ -129,6 +115,17 @@ export async function POST(req: NextRequest) {
       .single()
 
     if (error) throw error
+
+    // Send payment-pending confirmation email
+    try {
+      await sendResendConfirmation({
+        to: body.caregiverEmail,
+        participantName: `${body.participantFirstName} ${body.participantLastName}`,
+        caregiverName: body.caregiverFirstName,
+      })
+    } catch (emailError) {
+      console.error('Resend confirmation email failed:', emailError)
+    }
 
     // Build PayPal URL with amount and note pre-filled
     const paypalUrl = `https://www.paypal.com/donate/?hosted_button_id=F5AW5VJ5QHK7L`
