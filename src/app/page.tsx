@@ -181,6 +181,11 @@ function UpcomingDatesBanner() {
   return (
     <section className="bg-[#074694] text-white py-8 px-4" aria-label="Upcoming event dates">
       <div className="max-w-4xl mx-auto text-center">
+        <div className="mb-8">
+          <p className="font-heading font-black text-base text-white">Northwest Cary YMCA</p>
+          <p className="text-white/70 text-sm mt-1">6903 Carpenter Fire Station Road, Cary, NC 27519</p>
+          <p className="text-white/50 text-xs mt-2 italic">Enter through the Cross Pointe Church entrance.</p>
+        </div>
         <p className="font-heading font-black text-sm uppercase tracking-[3px] text-[#5ca8fe] mb-6">
           Upcoming Dates
         </p>
