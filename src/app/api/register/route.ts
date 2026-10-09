@@ -4,6 +4,25 @@ import { sendConfirmationEmail } from '@/lib/email'
 import { sendResendConfirmation } from '@/lib/resend-email'
 import { EVENT_CONFIG } from '@/config/event'
 import type { RegistrationFormData } from '@/types/registration'
+import { saveParticipantWaiver } from '@/lib/waivers'
+
+// Keep the signed waiver for this registration (it isn't in the registrations table).
+async function keepWaiver(req: NextRequest, body: RegistrationFormData, registrationId: string): Promise<void> {
+  try {
+    await saveParticipantWaiver({
+      registrationId,
+      participantName: `${body.participantFirstName} ${body.participantLastName}`,
+      agreed: true,
+      signedBy: body.waiverPrintedName.trim(),
+      signedDate: body.waiverDate,
+      signedAt: new Date().toISOString(),
+      ip: (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim(),
+      userAgent: req.headers.get('user-agent') ?? '',
+    })
+  } catch (err) {
+    console.error('Saving the signed waiver failed:', registrationId, err)
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,6 +44,11 @@ export async function POST(req: NextRequest) {
       if (!body[field]) {
         return NextResponse.json({ error: `${field} is required` }, { status: 400 })
       }
+    }
+
+    // The waiver must be signed (the form requires it; never trust the browser)
+    if (body.waiverAgreed !== true || !String(body.waiverPrintedName ?? '').trim()) {
+      return NextResponse.json({ error: 'Please agree to and sign the waiver.' }, { status: 400 })
     }
 
     // Email format validation
@@ -72,6 +96,7 @@ export async function POST(req: NextRequest) {
         .single()
 
       if (error) throw error
+      await keepWaiver(req, body, data.id)
 
       try {
         await sendConfirmationEmail({
@@ -115,6 +140,7 @@ export async function POST(req: NextRequest) {
       .single()
 
     if (error) throw error
+    await keepWaiver(req, body, data.id)
 
     // Send payment-pending confirmation email
     try {

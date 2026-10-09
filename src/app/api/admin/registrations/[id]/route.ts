@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isAdmin } from '@/lib/admin-auth'
 import { getSupabaseAdmin } from '@/lib/supabase'
 
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authHeader = req.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) {
+  if (!isAdmin(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -38,8 +38,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authHeader = req.headers.get('authorization')
-  if (authHeader !== `Bearer ${process.env.ADMIN_SECRET}`) {
+  if (!isAdmin(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

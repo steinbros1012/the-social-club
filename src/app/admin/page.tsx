@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { EVENT_CONFIG } from "@/config/event"
+import VolunteersAdmin from "@/components/VolunteersAdmin"
 
-const ADMIN_SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET ?? ""
 const MIN_ATTENDANCE = 20
 
 interface Registration {
@@ -56,13 +56,25 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-  function handleSubmit(e: React.FormEvent) {
+  const [busy, setBusy] = useState(false)
+
+  // The password is checked on the server, which signs this browser in with a secure cookie.
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-      sessionStorage.setItem("admin_auth", "1")
-      onLogin()
-    } else {
-      setError("Incorrect password.")
+    setBusy(true)
+    setError("")
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      })
+      if (res.ok) onLogin()
+      else setError("Incorrect password.")
+    } catch {
+      setError("Couldn't reach the server. Try again.")
+    } finally {
+      setBusy(false)
     }
   }
 
@@ -88,7 +100,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
             />
             {error && <p role="alert" className="mt-1.5 text-xs text-red-500 font-medium">{error}</p>}
           </div>
-          <button type="submit" className="w-full bg-[#074694] hover:bg-[#063d82] text-white font-bold py-3 rounded-xl transition-colors">
+          <button type="submit" disabled={busy} className="w-full bg-[#074694] hover:bg-[#063d82] disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors">
             Sign In
           </button>
         </form>
@@ -275,9 +287,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     setLoading(true)
     setFetchError(null)
     try {
-      const res = await fetch("/api/admin/registrations", {
-        headers: { Authorization: `Bearer ${ADMIN_SECRET}` },
-      })
+      const res = await fetch("/api/admin/registrations")
       if (!res.ok) throw new Error("Failed to fetch registrations")
       const json = await res.json()
       setRegistrations(json.registrations ?? [])
@@ -295,7 +305,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${ADMIN_SECRET}`,
       },
       body: JSON.stringify(updates),
     })
@@ -312,7 +321,6 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   async function deleteReg(id: string) {
     const res = await fetch(`/api/admin/registrations/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${ADMIN_SECRET}` },
     })
     if (!res.ok) { alert("Delete failed. Please try again."); return }
     setRegistrations((prev) => prev.filter((r) => r.id !== id))
@@ -377,7 +385,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         </div>
         <div className="flex items-center gap-5">
           <Link href="/" className="text-white/70 hover:text-white text-sm transition-colors">← Site</Link>
-          <button onClick={() => { sessionStorage.removeItem("admin_auth"); onLogout() }} className="text-white/70 hover:text-white text-sm transition-colors">Sign Out</button>
+          <button onClick={() => { void fetch("/api/admin/logout", { method: "POST" }).finally(onLogout) }} className="text-white/70 hover:text-white text-sm transition-colors">Sign Out</button>
         </div>
       </header>
 
@@ -514,6 +522,8 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             </div>
           </div>
         )}
+
+        <VolunteersAdmin />
       </main>
 
       {/* Detail drawer */}
@@ -536,9 +546,21 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(false)
   const [checked, setChecked] = useState(false)
 
+  // Already signed in? (the session cookie is httpOnly: ask the server)
   useEffect(() => {
-    if (sessionStorage.getItem("admin_auth") === "1") setAuthed(true)
-    setChecked(true)
+    let current = true
+    fetch("/api/admin/session")
+      .then((r) => r.json() as Promise<{ admin?: boolean }>)
+      .then((j) => {
+        if (current) setAuthed(j.admin === true)
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (current) setChecked(true)
+      })
+    return () => {
+      current = false
+    }
   }, [])
 
   if (!checked) return null

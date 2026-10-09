@@ -41,6 +41,7 @@ function Nav() {
           <a href="#about" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">About</a>
           <a href="#experience" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">Experience</a>
           <a href="#faq" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">FAQ</a>
+          <Link href="/volunteer" className="text-[#4B4F58] hover:text-[#074694] text-sm font-medium transition-colors focus-ring rounded">Volunteer</Link>
         </nav>
         <a
           href="#register"
@@ -69,6 +70,7 @@ function Nav() {
             { href: "#about", label: "About" },
             { href: "#experience", label: "Experience" },
             { href: "#faq", label: "FAQ" },
+            { href: "/volunteer", label: "Volunteer" },
           ].map(({ href, label }) => (
             <a
               key={href}
@@ -533,6 +535,7 @@ function Footer() {
                 { href: "#experience", label: "Experience" },
                 { href: "#register", label: "Register" },
                 { href: "#faq", label: "FAQ" },
+                { href: "/volunteer", label: "Volunteer" },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <a
