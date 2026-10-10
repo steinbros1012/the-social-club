@@ -112,7 +112,7 @@ export default function VolunteerForm() {
       </div>
 
       <fieldset className="space-y-5">
-        <legend className="font-heading font-black text-[#101218] text-xl uppercase mb-4">About the volunteer</legend>
+        <legend className="font-heading font-black text-[#101218] text-2xl uppercase mb-4">Register here:</legend>
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="First Name" id="first-name" required autoComplete="given-name" value={data.firstName} onChange={(e) => set("firstName", e.target.value)} error={errors.firstName} />
           <Field label="Last Name" id="last-name" required autoComplete="family-name" value={data.lastName} onChange={(e) => set("lastName", e.target.value)} error={errors.lastName} />
