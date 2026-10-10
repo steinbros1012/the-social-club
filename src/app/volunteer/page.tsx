@@ -54,10 +54,12 @@ export default function VolunteerPage() {
           </div>
 
           <div className="bg-white rounded-3xl shadow-xl border border-[#e7e7e7] p-6 sm:p-8">
-            <div role="note" className="rounded-2xl bg-[#FFF4D6] border-2 border-[#F5B700] px-5 py-5 sm:px-7 sm:py-6 mb-8 text-center">
-              <p className="font-heading font-black text-[#101218] text-xl sm:text-2xl leading-snug">
-                Please note: For Minors, anyone under the age of 18, Parents and/or Guardians need to sign on their behalf.
-              </p>
+            <div role="note" className="rounded-2xl bg-[#FFF4D6] border-2 border-[#F5B700] px-5 py-5 sm:px-7 sm:py-6 mb-8 font-heading font-black text-[#101218] text-xl sm:text-2xl leading-snug">
+              <p className="mb-3">Please note:</p>
+              <ul className="list-disc pl-6 space-y-2">
+                <li>For Minors, anyone under the age of 18, Parents and/or Guardians need to sign on their behalf.</li>
+                <li>Every volunteer has to sign a waiver.</li>
+              </ul>
             </div>
             <h2 className="font-heading font-black text-[#101218] text-2xl uppercase mb-1">Sign up &amp; sign the waiver</h2>
             <p className="text-[#4B4F58] text-sm mb-8">Takes about 2 minutes.</p>
