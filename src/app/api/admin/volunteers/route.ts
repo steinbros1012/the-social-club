@@ -8,6 +8,7 @@ const CSV_COLUMNS: [string, (r: VolunteerRecord) => unknown][] = [
   ["event_date", (r) => r.eventDate],
   ["first_name", (r) => r.firstName],
   ["last_name", (r) => r.lastName],
+  ["birthday", (r) => r.birthday ?? ""],
   ["age", (r) => r.age],
   ["minor", (r) => (r.isMinor ? "yes" : "no")],
   ["contact_name", (r) => r.contactName],

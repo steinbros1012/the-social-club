@@ -11,4 +11,5 @@ export const VOLUNTEER_EVENT = {
   // Who is told about each new volunteer sign-up.
   notifyEmails: ["amanda.wujcik@gmail.com"],
   minorAge: 18, // under this age, a parent/guardian signs the waiver
+  timeZone: "America/New_York", // "today" for working out a volunteer's age from their birthday
 } as const

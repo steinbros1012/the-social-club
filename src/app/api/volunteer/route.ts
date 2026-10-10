@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { VOLUNTEER_EVENT } from "@/config/volunteer"
-import { isMinorAge, parseAge, validateVolunteer } from "@/lib/volunteer-validate"
+import { ageFromBirthday, isMinorBirthday, validateVolunteer } from "@/lib/volunteer-validate"
 import { saveVolunteer } from "@/lib/volunteers"
 import { sendVolunteerConfirmation, sendVolunteerNotification } from "@/lib/volunteer-email"
 import type { VolunteerFormData, VolunteerRecord } from "@/types/volunteer"
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please fix the highlighted fields.", errors }, { status: 400 })
   }
 
-  const minor = isMinorAge(body.age)
+  const minor = isMinorBirthday(body.birthday)
   const now = new Date().toISOString()
   const record: VolunteerRecord = {
     id: crypto.randomUUID(),
@@ -29,7 +29,8 @@ export async function POST(req: NextRequest) {
     eventDate: VOLUNTEER_EVENT.date,
     firstName: body.firstName.trim(),
     lastName: body.lastName.trim(),
-    age: parseAge(body.age) as number,
+    birthday: body.birthday.trim(),
+    age: ageFromBirthday(body.birthday) as number,
     isMinor: minor,
     contactName: minor ? body.contactName.trim() : `${body.firstName.trim()} ${body.lastName.trim()}`,
     contactRelationship: minor ? body.contactRelationship.trim() : "self",

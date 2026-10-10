@@ -3,13 +3,13 @@
 import { useMemo, useState } from "react"
 import WaiverText from "@/components/WaiverText"
 import { VOLUNTEER_EVENT } from "@/config/volunteer"
-import { isMinorAge, validateVolunteer, type VolunteerErrors } from "@/lib/volunteer-validate"
+import { isMinorBirthday, todayIso, validateVolunteer, type VolunteerErrors } from "@/lib/volunteer-validate"
 import type { VolunteerFormData } from "@/types/volunteer"
 
 const EMPTY: VolunteerFormData = {
   firstName: "",
   lastName: "",
-  age: "",
+  birthday: "",
   contactName: "",
   contactRelationship: "",
   contactPhone: "",
@@ -55,7 +55,7 @@ export default function VolunteerForm() {
   const [submitting, setSubmitting] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const [done, setDone] = useState(false)
-  const minor = isMinorAge(data.age)
+  const minor = isMinorBirthday(data.birthday)
   const today = useMemo(() => new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }), [])
 
   function set<K extends keyof VolunteerFormData>(key: K, value: VolunteerFormData[K]) {
@@ -118,7 +118,7 @@ export default function VolunteerForm() {
           <Field label="Last Name" id="last-name" required autoComplete="family-name" value={data.lastName} onChange={(e) => set("lastName", e.target.value)} error={errors.lastName} />
         </div>
         <div className="sm:w-1/2">
-          <Field label="Age" id="age" required type="number" inputMode="numeric" min={5} max={110} value={data.age} onChange={(e) => set("age", e.target.value)} error={errors.age}
+          <Field label="Birthday" id="birthday" required type="date" autoComplete="bday" max={todayIso()} value={data.birthday} onChange={(e) => set("birthday", e.target.value)} error={errors.birthday}
             hint={`Under ${VOLUNTEER_EVENT.minorAge}? A parent or guardian fills in their details and signs the waiver.`} />
         </div>
       </fieldset>

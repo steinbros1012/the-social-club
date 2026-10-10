@@ -1,5 +1,6 @@
 import { Resend } from "resend"
 import { VOLUNTEER_EVENT } from "@/config/volunteer"
+import { formatBirthday } from "@/lib/volunteer-validate"
 import type { VolunteerRecord } from "@/types/volunteer"
 
 // (created on first use, so builds and pages don't need the key just to load)
@@ -62,6 +63,7 @@ export async function sendVolunteerConfirmation(r: VolunteerRecord): Promise<voi
 export async function sendVolunteerNotification(r: VolunteerRecord): Promise<void> {
   const rows: [string, string][] = [
     ["Volunteer", `${r.firstName} ${r.lastName}`],
+    ...(r.birthday ? [["Birthday", formatBirthday(r.birthday)] as [string, string]] : []),
     ["Age", `${r.age}${r.isMinor ? " (minor)" : ""}`],
     [r.isMinor ? "Parent/Guardian" : "Contact", `${r.contactName}${r.contactRelationship ? ` (${r.contactRelationship})` : ""}`],
     ["Phone", r.contactPhone],

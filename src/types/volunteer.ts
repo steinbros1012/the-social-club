@@ -2,7 +2,7 @@
 export interface VolunteerFormData {
   firstName: string
   lastName: string
-  age: string
+  birthday: string // YYYY-MM-DD
   // For volunteers under 18 these are the parent/guardian's; otherwise the volunteer's own.
   contactName: string
   contactRelationship: string
@@ -21,7 +21,8 @@ export interface VolunteerRecord {
   eventDate: string
   firstName: string
   lastName: string
-  age: number
+  birthday?: string // YYYY-MM-DD; sign-ups from before the form asked for it only have an age
+  age: number // on the day they signed up
   isMinor: boolean
   contactName: string
   contactRelationship: string

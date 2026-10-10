@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
+import { formatBirthday } from "@/lib/volunteer-validate"
 import type { VolunteerRecord } from "@/types/volunteer"
 
 // The admin dashboard's Volunteers section: who signed up, their contact, and who signed
@@ -91,7 +92,7 @@ export default function VolunteersAdmin() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[#e7e7e7] bg-[#f3f5f5]">
-                {["Volunteer", "Age", "Contact", "Waiver", "Signed up"].map((h) => (
+                {["Volunteer", "Birthday / Age", "Contact", "Waiver", "Signed up"].map((h) => (
                   <th key={h} scope="col" className="px-5 py-3 text-left text-xs font-bold text-[#4B4F58] uppercase tracking-wide whitespace-nowrap">{h}</th>
                 ))}
               </tr>
@@ -101,7 +102,7 @@ export default function VolunteersAdmin() {
                 <tr key={v.id}>
                   <td className="px-5 py-4 font-semibold text-[#101218]">{v.firstName} {v.lastName}</td>
                   <td className="px-5 py-4">
-                    {v.age}
+                    {v.birthday ? `${formatBirthday(v.birthday)} (${v.age})` : v.age}
                     {v.isMinor && <span className="ml-2 inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700">Minor</span>}
                   </td>
                   <td className="px-5 py-4">
