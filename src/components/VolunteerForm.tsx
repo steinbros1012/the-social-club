@@ -126,7 +126,7 @@ export default function VolunteerForm() {
             ? `Not needed: the volunteer is ${VOLUNTEER_EVENT.minorAge} or older.`
             : guardian
               ? `Required because the volunteer is under ${VOLUNTEER_EVENT.minorAge}.`
-              : `Only fill this in if the volunteer is under ${VOLUNTEER_EVENT.minorAge}. Volunteers ${VOLUNTEER_EVENT.minorAge} or older can skip to Volunteer Information.`}
+              : `Please fill this in if the volunteer is under ${VOLUNTEER_EVENT.minorAge}. Volunteers ${VOLUNTEER_EVENT.minorAge} or older can skip to Volunteer Information.`}
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="First Name" id="guardian-first-name" required={guardian} disabled={adult} value={data.guardianFirstName} onChange={(e) => set("guardianFirstName", e.target.value)} error={errors.guardianFirstName} />
