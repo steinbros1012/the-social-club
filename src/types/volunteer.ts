@@ -1,16 +1,16 @@
 // What the volunteer form sends.
 export interface VolunteerFormData {
-  // Who is filling in the form: the volunteer (18+), or a parent/guardian for a volunteer under 18.
-  signingAs: "" | "self" | "guardian"
+  // Parent/guardian: only filled in (and only required) when the volunteer is under 18.
+  guardianFirstName: string
+  guardianLastName: string
+  guardianEmail: string
+  guardianPhone: string
   firstName: string
   lastName: string
   birthday: string // YYYY-MM-DD
-  // The parent/guardian's name (only when signingAs is "guardian").
-  contactFirstName: string
-  contactLastName: string
-  // The parent/guardian's when signingAs is "guardian"; otherwise the volunteer's own.
-  contactPhone: string
-  contactEmail: string
+  // The volunteer's own contact details: only asked for when they are 18 or older.
+  email: string
+  phone: string
   waiverAgreed: boolean
   signatureName: string
   // Honeypot: real people never fill this in (it's hidden).

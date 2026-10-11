@@ -41,40 +41,29 @@ export function formatBirthday(birthday: string): string {
   return m ? `${m[2]}/${m[3]}/${m[1]}` : birthday
 }
 
-// A volunteer under 18 has to be signed up by a parent/guardian, and an adult signs up for
-// themselves. Returns what to tell the person when the birthday doesn't fit who is signing.
-export function signerMismatch(signingAs: VolunteerFormData["signingAs"], birthday: string): string | null {
-  const age = ageFromBirthday(birthday)
-  if (age === null) return null
-  const under = age < VOLUNTEER_EVENT.minorAge
-  if (signingAs === "self" && under) return `Volunteers under ${VOLUNTEER_EVENT.minorAge} need a parent or guardian to sign up for them. Choose "My child" above.`
-  if (signingAs === "guardian" && !under) return `This volunteer is ${VOLUNTEER_EVENT.minorAge} or older, so they sign up for themselves. Choose "I am" above.`
-  return null
-}
-
 // Shared by the form (as you type) and the API (never trust the browser).
 export function validateVolunteer(d: VolunteerFormData): VolunteerErrors {
   const e: VolunteerErrors = {}
-  const minor = d.signingAs === "guardian"
-  if (d.signingAs !== "self" && d.signingAs !== "guardian") e.signingAs = "Choose who is volunteering."
-  const who = minor ? "Parent/guardian" : "Your"
+  const age = ageFromBirthday(d.birthday)
+  const minor = age !== null && age < VOLUNTEER_EVENT.minorAge
   const str = (v: unknown): string => (typeof v === "string" ? v.trim() : "")
+  const contact = (emailKey: "email" | "guardianEmail", phoneKey: "phone" | "guardianPhone", who: string): void => {
+    if (!str(d[emailKey])) e[emailKey] = `${who} email is required.`
+    else if (!EMAIL_RE.test(str(d[emailKey]))) e[emailKey] = "Enter a valid email address."
+    if (!str(d[phoneKey])) e[phoneKey] = `${who} phone number is required.`
+    else if (!PHONE_RE.test(str(d[phoneKey]))) e[phoneKey] = "Enter a valid phone number."
+  }
   if (!str(d.firstName)) e.firstName = "First name is required."
   if (!str(d.lastName)) e.lastName = "Last name is required."
-  if (ageFromBirthday(d.birthday) === null) e.birthday = "Enter the volunteer's date of birth."
-  else {
-    const mismatch = signerMismatch(d.signingAs, d.birthday)
-    if (mismatch) e.birthday = mismatch
-  }
-  if (minor && !str(d.contactFirstName)) e.contactFirstName = "Parent/guardian first name is required."
-  if (minor && !str(d.contactLastName)) e.contactLastName = "Parent/guardian last name is required."
-  if (!str(d.contactPhone)) e.contactPhone = `${who} phone number is required.`
-  else if (!PHONE_RE.test(str(d.contactPhone))) e.contactPhone = "Enter a valid phone number."
-  if (!str(d.contactEmail)) e.contactEmail = `${who} email is required.`
-  else if (!EMAIL_RE.test(str(d.contactEmail))) e.contactEmail = "Enter a valid email address."
+  if (age === null) e.birthday = "Enter the volunteer's date of birth."
+  else if (minor) {
+    if (!str(d.guardianFirstName)) e.guardianFirstName = "Parent/guardian first name is required."
+    if (!str(d.guardianLastName)) e.guardianLastName = "Parent/guardian last name is required."
+    contact("guardianEmail", "guardianPhone", "Parent/guardian")
+  } else contact("email", "phone", "Your")
   if (d.waiverAgreed !== true) e.waiverAgreed = "The waiver must be agreed to."
   if (!str(d.signatureName)) e.signatureName = minor ? "A parent/guardian must type their full name to sign." : "Type your full name to sign."
-  for (const k of ["firstName", "lastName", "contactFirstName", "contactLastName", "contactPhone", "contactEmail", "signatureName"] as const) {
+  for (const k of ["firstName", "lastName", "email", "phone", "guardianFirstName", "guardianLastName", "guardianEmail", "guardianPhone", "signatureName"] as const) {
     if (str(d[k]).length > MAX) e[k] = "That's too long."
   }
   return e
