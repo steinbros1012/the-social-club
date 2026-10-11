@@ -32,8 +32,8 @@ export async function POST(req: NextRequest) {
     birthday: body.birthday.trim(),
     age: ageFromBirthday(body.birthday) as number,
     isMinor: minor,
-    contactName: minor ? body.contactName.trim() : `${body.firstName.trim()} ${body.lastName.trim()}`,
-    contactRelationship: minor ? body.contactRelationship.trim() : "self",
+    contactName: minor ? `${body.contactFirstName.trim()} ${body.contactLastName.trim()}` : `${body.firstName.trim()} ${body.lastName.trim()}`,
+    contactRelationship: minor ? "parent/guardian" : "self",
     contactPhone: body.contactPhone.trim(),
     contactEmail: body.contactEmail.trim(),
     waiver: {

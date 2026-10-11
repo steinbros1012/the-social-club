@@ -1,11 +1,14 @@
 // What the volunteer form sends.
 export interface VolunteerFormData {
+  // Who is filling in the form: the volunteer (18+), or a parent/guardian for a volunteer under 18.
+  signingAs: "" | "self" | "guardian"
   firstName: string
   lastName: string
   birthday: string // YYYY-MM-DD
-  // For volunteers under 18 these are the parent/guardian's; otherwise the volunteer's own.
-  contactName: string
-  contactRelationship: string
+  // The parent/guardian's name (only when signingAs is "guardian").
+  contactFirstName: string
+  contactLastName: string
+  // The parent/guardian's when signingAs is "guardian"; otherwise the volunteer's own.
   contactPhone: string
   contactEmail: string
   waiverAgreed: boolean
