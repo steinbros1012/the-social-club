@@ -20,6 +20,9 @@ export interface RegistrationFormData {
   // Preferences
   accommodationNotes: string
   dietaryNotes: string
+  // How they heard about us (optional)
+  referralSource: string
+  referralFriendName: string
   // Scholarship
   scholarshipRequested: boolean
   // Waiver

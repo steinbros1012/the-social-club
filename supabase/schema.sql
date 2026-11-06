@@ -20,6 +20,9 @@ create table if not exists registrations (
   -- Preferences
   accommodation_notes text,
   dietary_notes text,
+  -- How they heard about us
+  referral_source text,
+  referral_friend_name text,
   -- Payment
   scholarship_requested boolean not null default false,
   payment_status text not null default 'pending', -- pending | paid | scholarship | canceled | refunded

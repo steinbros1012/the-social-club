@@ -22,6 +22,8 @@ const CSV_COLUMNS = [
   'emergency_contact_phone',
   'accommodation_notes',
   'dietary_notes',
+  'referral_source',
+  'referral_friend_name',
   'scholarship_requested',
   'waiver_agreed',
   'waiver_printed_name',
