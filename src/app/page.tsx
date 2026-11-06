@@ -175,9 +175,6 @@ function Hero() {
 
 // ---------- UPCOMING DATES BANNER ----------
 function UpcomingDatesBanner() {
-  const dates = [
-    { label: "Fri, October 23rd", time: "6:30PM – 8:00PM", checkin: "Check-in 6:15PM" },
-  ]
   return (
     <section className="bg-[#074694] text-white py-8 px-4" aria-label="Upcoming event dates">
       <div className="max-w-4xl mx-auto text-center">
@@ -190,13 +187,6 @@ function UpcomingDatesBanner() {
           Upcoming Dates
         </p>
         <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 mb-6">
-          {dates.map((d) => (
-            <div key={d.label} className="flex-1 bg-white/10 rounded-2xl px-5 py-4 border border-white/20">
-              <p className="font-heading font-black text-white text-sm mb-1 whitespace-nowrap">{d.label}</p>
-              <p className="text-white/90 text-sm font-medium">{d.time}</p>
-              <p className="text-white/50 text-xs mt-1">{d.checkin}</p>
-            </div>
-          ))}
           <div className="flex-1 bg-white/5 rounded-2xl px-5 py-4 border border-white/10 text-center">
             <p className="font-heading font-black text-white/70 text-sm mb-1">2027</p>
             <p className="text-white/60 text-sm">Dates coming soon!</p>
