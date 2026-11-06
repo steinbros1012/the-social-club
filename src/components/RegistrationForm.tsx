@@ -23,6 +23,8 @@ const EMPTY_FORM: RegistrationFormData = {
   emergencyContactPhone: "",
   accommodationNotes: "",
   dietaryNotes: "",
+  referralSource: "",
+  referralFriendName: "",
   scholarshipRequested: false,
   waiverAgreed: false,
   waiverPrintedName: "",
@@ -427,6 +429,29 @@ function StepPreferences({
           onChange={(e) => onChange("dietaryNotes", e.target.value)}
           placeholder="e.g. nut allergy, gluten-free, vegetarian…"
         />
+
+        <SelectField
+          label="How did you hear about us?"
+          id="referral-source"
+          value={data.referralSource}
+          onChange={(e) => onChange("referralSource", e.target.value)}
+        >
+          <option value="">Select an option…</option>
+          <option value="Endless Sports">Endless Sports</option>
+          <option value="We Will Walk With You">We Will Walk With You</option>
+          <option value="Friend">Friend</option>
+          <option value="Social Media">Social Media</option>
+          <option value="Other">Other</option>
+        </SelectField>
+        {data.referralSource === "Friend" && (
+          <Field
+            label="Who can we thank for the referral?"
+            id="referral-friend-name"
+            value={data.referralFriendName}
+            onChange={(e) => onChange("referralFriendName", e.target.value)}
+            placeholder="Their name"
+          />
+        )}
 
         {/* Scholarship toggle */}
         <div>

@@ -27,6 +27,8 @@ interface Registration {
   registration_status: string
   accommodation_notes: string | null
   dietary_notes: string | null
+  referral_source?: string | null
+  referral_friend_name?: string | null
   waiver_printed_name: string | null
   waiver_date: string | null
   created_at: string
@@ -349,7 +351,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
   // CSV export (client-side)
   function exportCSV() {
-    const headers = ["Participant Name","Participant Email","Participant Phone","DOB","Caregiver Name","Caregiver Email","Caregiver Phone","Relationship","Emergency Contact","Emergency Phone","Scholarship","Payment","Status","Accommodations","Dietary Notes","Waiver Signed By","Waiver Date","Registered At"]
+    const headers = ["Participant Name","Participant Email","Participant Phone","DOB","Caregiver Name","Caregiver Email","Caregiver Phone","Relationship","Emergency Contact","Emergency Phone","Scholarship","Payment","Status","Accommodations","Dietary Notes","Heard About Us","Referred By","Waiver Signed By","Waiver Date","Registered At"]
     const rows = registrations.map((r) => [
       `${r.participant_first_name} ${r.participant_last_name}`,
       r.participant_email, r.participant_phone, r.participant_dob ?? "",
@@ -359,6 +361,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       r.scholarship_requested ? "Yes" : "No",
       r.payment_status, r.registration_status,
       r.accommodation_notes ?? "", r.dietary_notes ?? "",
+      r.referral_source ?? "", r.referral_friend_name ?? "",
       r.waiver_printed_name ?? "", r.waiver_date ?? "",
       new Date(r.created_at).toLocaleString(),
     ])

@@ -199,9 +199,9 @@ function UpcomingDatesBanner() {
             </div>
           ))}
           <div className="flex-1 bg-white/5 rounded-2xl px-5 py-4 border border-white/10 text-center">
-            <p className="font-heading font-black text-white/50 text-sm mb-1">December</p>
-            <p className="text-white/40 text-sm">No Social Club</p>
-            <p className="text-white/40 text-xs mt-1">Happy Holidays! 🎄</p>
+            <p className="font-heading font-black text-white/70 text-sm mb-1">2027</p>
+            <p className="text-white/60 text-sm">Dates coming soon!</p>
+            <p className="text-white/40 text-xs mt-1">Check back for updates</p>
           </div>
         </div>
         <a
